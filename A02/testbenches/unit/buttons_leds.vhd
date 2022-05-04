@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity button_leds is
   port (
@@ -11,17 +12,6 @@ entity button_leds is
 end entity button_leds;
 
 architecture behavior of button_leds is
-
-  component counter is
-  generic (
-  	bit_width : positive := 4
-  );
-  port(
-  	clk			: in std_logic;
-  	reset		: in std_logic;
-  	counter_o	: out std_logic_vector(bit_width-1 downto 0)
-  );
-  end component;
 
   component shift_register is
   generic (
@@ -36,17 +26,10 @@ architecture behavior of button_leds is
   end component;
 
   signal shift_buf: std_logic_vector(3 downto 0);
-  signal cout_buf: std_logic_vector(1 downto 0);
+  signal counter_reg : std_logic_vector(1 downto 0);
 
   begin
 
-  	mycounter : counter
-  	generic map (bit_width => 2)
-  	port map(
-  		clk 		=> clk,
-  		reset		=> reset,
-  		counter_o	=> cout_buf
-  	);
 
     myshiftreg : shift_register
     generic map (bit_width => 4)
@@ -57,36 +40,27 @@ architecture behavior of button_leds is
       dout	=> shift_buf
     );
 
--- TEST
-    begin
+
+-- counter
       process(clk, reset)
       begin
         if(reset = '1') then
-          leds <= (others => '0');
-          shift_buf <= (others => '0');
-          cout_buf <= (others => '0');
-        elsif (cout_buf = "11") then
-          leds <= shift_buf;
+          counter_reg <= (others => '0');
+        elsif (rising_edge(clk)) then
+          counter_reg <= std_logic_vector( unsigned(counter_reg) + 1 );
         end if;
       end process;
--- TEST end
 
-    process(reset)
-    begin
-      if(reset = '1') then
-        leds <= (others => '0');
-        shift_buf <= (others => '0');
-        cout_buf <= (others => '0');
-      end if;
-    end process;
+--counter end
 
     process(clk, reset)
     begin
-      if(reset = '0') then
-        if cout_buf = "11" then
-          leds <= shift_buf;
-        end if;
+      if(reset = '1') then
+        leds <= (others => '0');
+      elsif (rising_edge(clk) and counter_reg = "00") then
+         leds <= shift_buf;
       end if;
     end process;
+
 
 end architecture behavior;

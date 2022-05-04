@@ -52,14 +52,38 @@ begin
 	wait for 2*CLK_PERIOD;
 	assert leds = x"0" report "leds are not off during reset" severity failure;
 	reset <= '0';
+  din <= '0';
 	wait for CLK_PERIOD;
-
   din <= '1';
 	--assert counter_o = x"1" report "counter mismatch!" severity failure;
-	wait for 3*CLK_PERIOD;
-	assert leds = "0111" report "counter mismatch!" severity failure;
-
+	wait for 4*CLK_PERIOD;
+	assert leds = "1110" report "counter mismatch!" severity failure;
+  din <= '0';
 	wait for CLK_PERIOD;
+  reset <= '1';
+  wait for CLK_PERIOD;
+  reset <= '0';
+  wait for 2*CLK_PERIOD;
+  din <= '1';
+  wait for 3*CLK_PERIOD;
+  assert leds = "1100" report "counter mismatch!" severity failure;
+
+
+  reset <= '1';
+  wait for CLK_PERIOD;
+  reset <= '0';
+
+  din <= '0';
+	wait for CLK_PERIOD;
+  din <= '1';
+	--assert counter_o = x"1" report "counter mismatch!" severity failure;
+	wait for 4*CLK_PERIOD;
+	assert leds = "1110" report "counter mismatch!" severity failure;
+  din <= '0';
+	wait for CLK_PERIOD;
+  din <= '1';
+  wait for 3*CLK_PERIOD;
+  assert leds = "1101" report "counter mismatch!" severity failure;
     report "No errors" severity note;
 	wait ;
 
