@@ -51,8 +51,6 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
     -- Stimulus process
     testProc : process
     begin
-        div_factor_tb <= 1;
-        wait for 12*ckTime;
         div_factor_tb <= 2;
         wait for 12*ckTime;
         div_factor_tb <= 4;
@@ -60,6 +58,8 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
         div_factor_tb <= 3;
         wait for 12*ckTime;
         div_factor_tb <= 5;
+        wait for 12*ckTime;
+        div_factor_tb <= 6;
         wait for 12*ckTime;
 
     report "No errors" severity note;

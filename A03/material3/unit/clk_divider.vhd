@@ -15,10 +15,10 @@ ARCHITECTURE a_clk_divider  OF clk_divider  IS
     constant denominator  : INTEGER := 6;
     constant rounded_div  : INTEGER := 6;
 
-    signal my_count : INTEGER  := -2; -- doesn't initialize correctly? Allways 2 too much
+    signal my_count : INTEGER  range -2 to 255 := -2; -- doesn't initialize correctly? Allways 2 too much
 
-    signal my_count2 : INTEGER  := -2; -- doesn't initialize correctly? Allways 2 too much
-    signal my_count3 : INTEGER  := -2; -- doesn't initialize correctly? Allways 2 too much
+    signal my_count2 : INTEGER  range -2 to 64 := -2; -- doesn't initialize correctly? Allways 2 too much
+    signal my_count3 : INTEGER  range -2 to 64 := -2; -- doesn't initialize correctly? Allways 2 too much
 
     signal o0_buf   : std_logic := '0';
     signal o1_buf   : std_logic := '0';
