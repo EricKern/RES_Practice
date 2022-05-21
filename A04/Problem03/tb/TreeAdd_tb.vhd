@@ -14,14 +14,14 @@ ARCHITECTURE behavior OF treeadd_tb IS
         clk     : in std_logic;
         inputs  : in addInput;
         reset	: in std_logic;
-        sum_out	: out signed (bit_width downto 0)
+        sum_out	: out signed (intermediate_wires_width downto 0)
       );
     END COMPONENT;
 
 
     signal tb_input : addInput := (others=>(others =>'0'));
     signal tb_reset : std_logic := '0';
-    signal tb_sum_out	: signed (bit_width downto 0);
+    signal tb_sum_out	: signed (intermediate_wires_width downto 0) := (others =>'0');
 
     signal clk_tb : std_logic := '0';
 
@@ -47,7 +47,40 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 
     -- Stimulus process
     testProc : process
-    begin
+    begin 
+        tb_input(0) <= to_signed(1, tb_input(0)'length);
+        tb_input(1) <= to_signed(1, tb_input(0)'length);
+        wait for 5*ckTime;
+        assert tb_sum_out = to_signed(2, tb_sum_out'length) report "Addition faild, expected result: 2" severity failure;
+
+        for i in tb_input(0)'RANGE loop
+            tb_input(i) <= to_signed(31, tb_input(0)'length);
+        end loop;
+        wait for 5*ckTime;
+        assert tb_sum_out = to_signed(186, tb_sum_out'length) report "Addition faild, expected result: 186" severity failure;
+        for i in tb_input(0)'RANGE loop
+            tb_input(i) <= to_signed(0, tb_input(0)'length);
+        end loop;
+        tb_input(0) <= to_signed(31, tb_input(0)'length);
+        tb_input(1) <= to_signed(-32, tb_input(0)'length);
+        wait for 5*ckTime;
+        assert tb_sum_out = to_signed(-1, tb_sum_out'length) report "Addition faild, expected result: -1" severity failure;
+
+        tb_input(0) <= to_signed(1, tb_input(0)'length);
+        tb_input(1) <= to_signed(2, tb_input(0)'length);
+        wait for 1*ckTime;
+        tb_input(0) <= to_signed(1, tb_input(0)'length);
+        tb_input(1) <= to_signed(3, tb_input(0)'length);
+        wait for 1*ckTime;
+        tb_input(0) <= to_signed(1, tb_input(0)'length);
+        tb_input(1) <= to_signed(4, tb_input(0)'length);
+        wait for 1*ckTime;
+        assert tb_sum_out = to_signed(3, tb_sum_out'length) report "Addition faild, expected result: 3" severity failure;
+        wait for 1*ckTime;
+        assert tb_sum_out = to_signed(4, tb_sum_out'length) report "Addition faild, expected result: 4" severity failure;
+        wait for 1*ckTime;
+        assert tb_sum_out = to_signed(5, tb_sum_out'length) report "Addition faild, expected result: 5" severity failure;
+
         report "No errors" severity note;
         wait ;
     end process;

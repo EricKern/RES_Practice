@@ -8,36 +8,42 @@ entity TreeAdd is
     clk     : in std_logic;
     inputs  : in addInput;
   	reset		: in std_logic;
-  	sum_out	: out signed (bit_width+(num_inputs+1/2) downto 0)
+  	sum_out	: out signed (intermediate_wires_width downto 0) := (others =>'0')
   );
 end entity;
 
 architecture logic of TreeAdd is
-  -- num_inputs-3: there are (num_inputs-1) Inputs and therefore two less intermediate_wires
-  type WireType is array (0 to num_inputs-3) of signed (bit_width+(num_inputs+1/2) downto 0);
+  
 
-  signal intermediate_wires : WireType;
+  -- num_inputs-3: there are (num_inputs-1) Inputs and therefore two l ess intermediate_wires
+  type WireType is array (num_inputs-3 downto 0) of signed (intermediate_wires_width downto 0);
+
+  signal intermediate_wires : WireType := (others=>(others =>'0'));
 
 
 begin
 
-  sum_out <= (others =>'0');
-
   process(clk)
   begin
-    for i in 0 to (num_inputs)/2 loop
-      if i > 0 then
-        intermediate_wires(2*i - 1) <= inputs(2*i) + inputs(2*i+1);
-      else
-        intermediate_wires(0) <= inputs(2*i) + inputs(2*i+1);
-      end if;
-    end loop;
+    if (rising_edge(clk)) then
+      for i in 0 to (num_inputs)/2-1 loop
+        if i > 0 then
+          intermediate_wires(2*i - 1) <= resize(inputs(2*i), intermediate_wires(i)'LENGTH) + resize(inputs(2*i+1), intermediate_wires(i)'LENGTH);
 
-    for j in 1 to (num_inputs)/2-1 loop
-      intermediate_wires(2*j) <= intermediate_wires(2*j-1) + intermediate_wires(2*j-2);
-    end loop;
+
+          -- intermediate_wires(i) <= resize(inputs(i), intermediate_wires(i)'LENGTH) + resize(inputs(i), intermediate_wires(i)'LENGTH);
+        else
+          intermediate_wires(0) <= resize(inputs(2*i),intermediate_wires(i)'LENGTH) + resize(inputs(2*i+1), intermediate_wires(i)'LENGTH);
+        end if;
+      end loop;
+
+      for j in 1 to (num_inputs)/2-2 loop
+        intermediate_wires(2*j) <= intermediate_wires(2*j-1) + intermediate_wires(2*j-2);
+      end loop;
 
     sum_out <= intermediate_wires(intermediate_wires'LENGTH-1) + intermediate_wires(intermediate_wires'LENGTH-2);
+
+    end if;
   end process;
 
 end architecture logic;
