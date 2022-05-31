@@ -1,0 +1,9 @@
+
+State Machine - |toplevel|fsm:fsm_top|current_state
+Name current_state.State3 current_state.State2o current_state.State2 current_state.State1o current_state.State1 current_state.State0 
+current_state.State0 0 0 0 0 0 0 
+current_state.State1 0 0 0 0 1 1 
+current_state.State1o 0 0 0 1 0 1 
+current_state.State2 0 0 1 0 0 1 
+current_state.State2o 0 1 0 0 0 1 
+current_state.State3 1 0 0 0 0 1 

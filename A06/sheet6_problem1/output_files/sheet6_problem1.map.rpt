@@ -1,0 +1,580 @@
+Analysis & Synthesis report for sheet6_problem1
+Tue May 31 21:25:55 2022
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Source Files Read
+  5. Analysis & Synthesis Resource Usage Summary
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. Analysis & Synthesis RAM Summary
+  8. Analysis & Synthesis IP Cores Summary
+  9. State Machine - |toplevel|fsm:fsm_top|current_state
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Source assignments for my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram
+ 14. Parameter Settings for User Entity Instance: debouncer:debouncer_top|counter:my_counter
+ 15. Parameter Settings for User Entity Instance: fsm:fsm_top|counter:fsm_counter
+ 16. Parameter Settings for User Entity Instance: my_fifo:fifo_top|scfifo:scfifo_component
+ 17. Parameter Settings for User Entity Instance: counter:counter_top
+ 18. scfifo Parameter Settings by Entity Instance
+ 19. Port Connectivity Checks: "counter:counter_top"
+ 20. Port Connectivity Checks: "my_fifo:fifo_top"
+ 21. Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue May 31 21:25:55 2022       ;
+; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; Revision Name                      ; sheet6_problem1                             ;
+; Top-level Entity Name              ; toplevel                                    ;
+; Family                             ; Cyclone 10 LP                               ;
+; Total logic elements               ; 30                                          ;
+;     Total combinational functions  ; 30                                          ;
+;     Dedicated logic registers      ; 29                                          ;
+; Total registers                    ; 29                                          ;
+; Total pins                         ; 10                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 8                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10CL025YU256C8G    ;                    ;
+; Top-level entity name                                            ; toplevel           ; sheet6_problem1    ;
+; Family name                                                      ; Cyclone 10 LP      ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+; toplevel.vhd                     ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd                         ;         ;
+; debouncer.vhd                    ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd                        ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd                    ;         ;
+; fsm.vhd                          ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/fsm.vhd                              ;         ;
+; counter.vhd                      ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/counter.vhd                          ;         ;
+; my_fifo.vhd                      ; yes             ; User Wizard-Generated File   ; /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd                          ;         ;
+; scfifo.tdf                       ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf     ;         ;
+; a_regfifo.inc                    ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_regfifo.inc  ;         ;
+; a_dpfifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_dpfifo.inc   ;         ;
+; a_i2fifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_i2fifo.inc   ;         ;
+; a_fffifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_fffifo.inc   ;         ;
+; a_f2fifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_f2fifo.inc   ;         ;
+; aglobal191.inc                   ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/aglobal191.inc ;         ;
+; db/scfifo_6e31.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf                   ;         ;
+; db/a_dpfifo_dk31.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf                 ;         ;
+; db/a_fefifo_i4e.tdf              ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf                  ;         ;
+; db/cntr_2o7.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/cntr_2o7.tdf                      ;         ;
+; db/altsyncram_fdm1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf               ;         ;
+; db/cntr_mnb.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/cntr_mnb.tdf                      ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 30           ;
+;                                             ;              ;
+; Total combinational functions               ; 30           ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 0            ;
+;     -- 3 input functions                    ; 1            ;
+;     -- <=2 input functions                  ; 29           ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 3            ;
+;     -- arithmetic mode                      ; 27           ;
+;                                             ;              ;
+; Total registers                             ; 29           ;
+;     -- Dedicated logic registers            ; 29           ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 10           ;
+; Total memory bits                           ; 8            ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; CLK12M~input ;
+; Maximum fan-out                             ; 33           ;
+; Total fan-out                               ; 145          ;
+; Average fan-out                             ; 1.75         ;
++---------------------------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                               ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                        ; Entity Name     ; Library Name ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |toplevel                                ; 30 (1)              ; 29 (0)                    ; 8           ; 0            ; 0       ; 0         ; 10   ; 0            ; |toplevel                                                                                                                  ; toplevel        ; work         ;
+;    |counter:counter_top|                 ; 29 (29)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|counter:counter_top                                                                                              ; counter         ; work         ;
+;    |my_fifo:fifo_top|                    ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top                                                                                                 ; my_fifo         ; work         ;
+;       |scfifo:scfifo_component|          ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component                                                                         ; scfifo          ; work         ;
+;          |scfifo_6e31:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated                                              ; scfifo_6e31     ; work         ;
+;             |a_dpfifo_dk31:dpfifo|       ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo                         ; a_dpfifo_dk31   ; work         ;
+;                |altsyncram_fdm1:FIFOram| ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram ; altsyncram_fdm1 ; work         ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                ;
++-----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                        ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++-----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4            ; 4            ; 4            ; 4            ; 16   ; None ;
++-----------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                        ;
++--------+--------------+---------+--------------+--------------+----------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance            ; IP Include File ;
++--------+--------------+---------+--------------+--------------+----------------------------+-----------------+
+; Altera ; FIFO         ; 19.1    ; N/A          ; N/A          ; |toplevel|my_fifo:fifo_top ; my_fifo.vhd     ;
++--------+--------------+---------+--------------+--------------+----------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |toplevel|fsm:fsm_top|current_state                                                                                                               ;
++-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
+; Name                  ; current_state.State3 ; current_state.State2o ; current_state.State2 ; current_state.State1o ; current_state.State1 ; current_state.State0 ;
++-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
+; current_state.State0  ; 0                    ; 0                     ; 0                    ; 0                     ; 0                    ; 0                    ;
+; current_state.State1  ; 0                    ; 0                     ; 0                    ; 0                     ; 1                    ; 1                    ;
+; current_state.State1o ; 0                    ; 0                     ; 0                    ; 1                     ; 0                    ; 1                    ;
+; current_state.State2  ; 0                    ; 0                     ; 1                    ; 0                     ; 0                    ; 1                    ;
+; current_state.State2o ; 0                    ; 1                     ; 0                    ; 0                     ; 0                    ; 1                    ;
+; current_state.State3  ; 1                    ; 0                     ; 0                    ; 0                     ; 0                    ; 1                    ;
++-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                       ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
+; Register name                                                                                                                                              ; Reason for Removal                          ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
+; fsm:fsm_top|counter:fsm_counter|counter_reg[0..24]                                                                                                         ; Stuck at GND due to stuck port clear        ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count|counter_reg_bit[0,1]                        ; Stuck at GND due to stuck port clock_enable ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_full                                    ; Stuck at VCC due to stuck port data_in      ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:wr_ptr|counter_reg_bit[0,1]                              ; Stuck at GND due to stuck port clock_enable ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_non_empty                               ; Stuck at VCC due to stuck port data_in      ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[0,1] ; Stuck at GND due to stuck port clock_enable ;
+; edge_detector:edge_detector_top|input_buffer[0,1]                                                                                                          ; Lost fanout                                 ;
+; debouncer:debouncer_top|counter:my_counter|counter_reg[0..9]                                                                                               ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State0                                                                                                                           ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State1                                                                                                                           ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State1o                                                                                                                          ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State2                                                                                                                           ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State2o                                                                                                                          ; Lost fanout                                 ;
+; fsm:fsm_top|current_state.State3                                                                                                                           ; Lost fanout                                 ;
+; counter:counter_top|counter_reg[29..31]                                                                                                                    ; Lost fanout                                 ;
+; Total Number of Removed Registers = 54                                                                                                                     ;                                             ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                                                                                     ;
++-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                                                           ; Reason for Removal        ; Registers Removed due to This Register                                                                                                                    ;
++-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; fsm:fsm_top|counter:fsm_counter|counter_reg[23]                                                                         ; Stuck at GND              ; edge_detector:edge_detector_top|input_buffer[1],                                                                                                          ;
+;                                                                                                                         ; due to stuck port clear   ; edge_detector:edge_detector_top|input_buffer[0],                                                                                                          ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[9],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[8],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[7],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[6],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[5],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[4],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[3],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[2],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[1],                                                                                                ;
+;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[0]                                                                                                 ;
+; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_full ; Stuck at VCC              ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:wr_ptr|counter_reg_bit[1],                              ;
+;                                                                                                                         ; due to stuck port data_in ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_non_empty,                             ;
+;                                                                                                                         ;                           ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[1], ;
+;                                                                                                                         ;                           ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[0]  ;
++-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 29    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                        ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                         ;
++---------------------------------+--------------------+------+---------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debouncer:debouncer_top|counter:my_counter ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; bit_width      ; 10    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fsm:fsm_top|counter:fsm_counter ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; bit_width      ; 25    ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: my_fifo:fifo_top|scfifo:scfifo_component ;
++-------------------------+---------------+---------------------------------------------+
+; Parameter Name          ; Value         ; Type                                        ;
++-------------------------+---------------+---------------------------------------------+
+; AUTO_CARRY_CHAINS       ; ON            ; AUTO_CARRY                                  ;
+; IGNORE_CARRY_BUFFERS    ; OFF           ; IGNORE_CARRY                                ;
+; AUTO_CASCADE_CHAINS     ; ON            ; AUTO_CASCADE                                ;
+; IGNORE_CASCADE_BUFFERS  ; OFF           ; IGNORE_CASCADE                              ;
+; lpm_width               ; 4             ; Signed Integer                              ;
+; LPM_NUMWORDS            ; 4             ; Signed Integer                              ;
+; LPM_WIDTHU              ; 2             ; Signed Integer                              ;
+; LPM_SHOWAHEAD           ; OFF           ; Untyped                                     ;
+; UNDERFLOW_CHECKING      ; ON            ; Untyped                                     ;
+; OVERFLOW_CHECKING       ; ON            ; Untyped                                     ;
+; ALLOW_RWCYCLE_WHEN_FULL ; OFF           ; Untyped                                     ;
+; ADD_RAM_OUTPUT_REGISTER ; OFF           ; Untyped                                     ;
+; ALMOST_FULL_VALUE       ; 0             ; Untyped                                     ;
+; ALMOST_EMPTY_VALUE      ; 0             ; Untyped                                     ;
+; ENABLE_ECC              ; FALSE         ; Untyped                                     ;
+; USE_EAB                 ; ON            ; Untyped                                     ;
+; MAXIMIZE_SPEED          ; 5             ; Untyped                                     ;
+; DEVICE_FAMILY           ; Cyclone 10 LP ; Untyped                                     ;
+; OPTIMIZE_FOR_SPEED      ; 5             ; Untyped                                     ;
+; CBXI_PARAMETER          ; scfifo_6e31   ; Untyped                                     ;
++-------------------------+---------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: counter:counter_top ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; bit_width      ; 32    ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; scfifo Parameter Settings by Entity Instance                          ;
++----------------------------+------------------------------------------+
+; Name                       ; Value                                    ;
++----------------------------+------------------------------------------+
+; Number of entity instances ; 1                                        ;
+; Entity Instance            ; my_fifo:fifo_top|scfifo:scfifo_component ;
+;     -- FIFO Type           ; Single Clock                             ;
+;     -- lpm_width           ; 4                                        ;
+;     -- LPM_NUMWORDS        ; 4                                        ;
+;     -- LPM_SHOWAHEAD       ; OFF                                      ;
+;     -- USE_EAB             ; ON                                       ;
++----------------------------+------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter:counter_top"                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; counter_o[31..29] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; counter_o[24..0]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "my_fifo:fifo_top" ;
++------+-------+----------+--------------------+
+; Port ; Type  ; Severity ; Details            ;
++------+-------+----------+--------------------+
+; aclr ; Input ; Info     ; Stuck at GND       ;
++------+-------+----------+--------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"                                                                ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; reset            ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; counter_o[21..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; counter_o[24]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 10                          ;
+; cycloneiii_ff         ; 29                          ;
+;     plain             ; 29                          ;
+; cycloneiii_lcell_comb ; 30                          ;
+;     arith             ; 27                          ;
+;         2 data inputs ; 26                          ;
+;         3 data inputs ; 1                           ;
+;     normal            ; 3                           ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 2                           ;
+; cycloneiii_ram_block  ; 4                           ;
+;                       ;                             ;
+; Max LUT depth         ; 3.70                        ;
+; Average LUT depth     ; 2.60                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+    Info: Processing started: Tue May 31 21:25:41 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off sheet6_problem1 -c sheet6_problem1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20029): Only one processor detected - disabling parallel compilation
+Info (12021): Found 2 design units, including 1 entities, in source file toplevel.vhd
+    Info (12022): Found design unit 1: toplevel-rtl File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 12
+    Info (12023): Found entity 1: toplevel File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file debouncer.vhd
+    Info (12022): Found design unit 1: debouncer-a_debouncer File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 10
+    Info (12023): Found entity 1: debouncer File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
+    Info (12022): Found design unit 1: edge_detector-my_edge_detector File: /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd Line: 12
+    Info (12023): Found entity 1: edge_detector File: /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file fsm.vhd
+    Info (12022): Found design unit 1: fsm-a File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 44
+    Info (12023): Found entity 1: fsm File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
+    Info (12022): Found design unit 1: counter-my_counter File: /home/hwp1/Desktop/sheet6_problem1/counter.vhd Line: 16
+    Info (12023): Found entity 1: counter File: /home/hwp1/Desktop/sheet6_problem1/counter.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file my_fifo.vhd
+    Info (12022): Found design unit 1: my_fifo-SYN File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 58
+    Info (12023): Found entity 1: my_fifo File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 43
+Info (12127): Elaborating entity "toplevel" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at toplevel.vhd(25): used implicit default value for signal "fsm_reset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 25
+Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:debouncer_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 89
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(42): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 42
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(47): signal "counter_reg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 47
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(48): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 48
+Warning (10631): VHDL Process Statement warning at debouncer.vhd(40): inferring latch(es) for signal or variable "debounce_buf", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 40
+Info (10041): Inferred latch for "debounce_buf" at debouncer.vhd(40) File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 40
+Info (12128): Elaborating entity "counter" for hierarchy "debouncer:debouncer_top|counter:my_counter" File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 30
+Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:edge_detector_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 96
+Info (12128): Elaborating entity "fsm" for hierarchy "fsm:fsm_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 103
+Warning (10812): VHDL warning at fsm.vhd(80): sensitivity list already contains counter_reg File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Warning (10492): VHDL Process Statement warning at fsm.vhd(86): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 86
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "reset_count", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "reset_count" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State3" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State2o" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State2" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State1o" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State1" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State0" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
+Info (12128): Elaborating entity "counter" for hierarchy "fsm:fsm_top|counter:fsm_counter" File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 69
+Info (12128): Elaborating entity "my_fifo" for hierarchy "my_fifo:fifo_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 116
+Info (12128): Elaborating entity "scfifo" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
+Info (12130): Elaborated megafunction instantiation "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
+Info (12133): Instantiated megafunction "my_fifo:fifo_top|scfifo:scfifo_component" with the following parameter: File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
+    Info (12134): Parameter "add_ram_output_register" = "OFF"
+    Info (12134): Parameter "intended_device_family" = "Cyclone 10 LP"
+    Info (12134): Parameter "lpm_numwords" = "4"
+    Info (12134): Parameter "lpm_showahead" = "OFF"
+    Info (12134): Parameter "lpm_type" = "scfifo"
+    Info (12134): Parameter "lpm_width" = "4"
+    Info (12134): Parameter "lpm_widthu" = "2"
+    Info (12134): Parameter "overflow_checking" = "ON"
+    Info (12134): Parameter "underflow_checking" = "ON"
+    Info (12134): Parameter "use_eab" = "ON"
+Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_6e31.tdf
+    Info (12023): Found entity 1: scfifo_6e31 File: /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf Line: 25
+Info (12128): Elaborating entity "scfifo_6e31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated" File: /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf Line: 300
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_dk31.tdf
+    Info (12023): Found entity 1: a_dpfifo_dk31 File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 29
+Info (12128): Elaborating entity "a_dpfifo_dk31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo" File: /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf Line: 37
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_fefifo_i4e.tdf
+    Info (12023): Found entity 1: a_fefifo_i4e File: /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf Line: 25
+Info (12128): Elaborating entity "a_fefifo_i4e" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 42
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_2o7.tdf
+    Info (12023): Found entity 1: cntr_2o7 File: /home/hwp1/Desktop/sheet6_problem1/db/cntr_2o7.tdf Line: 26
+Info (12128): Elaborating entity "cntr_2o7" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw" File: /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf Line: 38
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_fdm1.tdf
+    Info (12023): Found entity 1: altsyncram_fdm1 File: /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_fdm1" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_mnb.tdf
+    Info (12023): Found entity 1: cntr_mnb File: /home/hwp1/Desktop/sheet6_problem1/db/cntr_mnb.tdf Line: 26
+Info (12128): Elaborating entity "cntr_mnb" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 44
+Info (12128): Elaborating entity "counter" for hierarchy "counter:counter_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 129
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 21 registers lost all their fanouts during netlist optimizations.
+Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram|ALTSYNCRAM" File: /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf Line: 36
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "USER_BTN" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 7
+Info (21057): Implemented 44 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 8 output pins
+    Info (21061): Implemented 30 logic cells
+    Info (21064): Implemented 4 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
+    Info: Peak virtual memory: 1088 megabytes
+    Info: Processing ended: Tue May 31 21:25:55 2022
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:10
+
+
