@@ -1,0 +1,38 @@
+entity name: timer32A
+
+  port(
+  	clk		: in std_logic;
+  	reset		: in std_logic;
+	w_ena		: in std_logic;
+	r_ena		: in std_logic;
+	data_in		: in std_logic_vector(7 downto 0);
+	address		: in std_logic_vector(7 downto 0);
+	data_out	: out std_logic_vector(7 downto 0);
+  	ir		: out std_logic;
+  );
+
+
+Address:
+MSB	LSB
+0000 0000 -> Load value register 0 (LSb)
+0000 0001 -> Load value register 1
+0000 0010 -> Load value register 2
+0000 0011 -> Load value register 3 (MSb)
+
+0000 0100 -> Current value register (LSb)
+0000 0101 -> Current value register
+0000 0110 -> Current value register
+0000 0111 -> Current value register (MSb)
+
+0000 1000 -> Control Register
+
+0000 1001 -> Status Register
+
+0000 1010 -> Clear Register
+
+Read Hold Logic:
+4 Status flags for every registers. When all set then update new value
+
+Fill currentvalue register when:
+4 status flags on 0 and rising edge read enable.
+
