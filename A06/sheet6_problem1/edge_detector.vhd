@@ -11,7 +11,7 @@ end entity;
 
 architecture my_edge_detector of edge_detector is
 
-  signal input_buffer : std_logic_vector(1 downto 0);
+  signal input_buffer : std_logic_vector(1 downto 0) := (others => '0');
 
   begin
     process(clk)

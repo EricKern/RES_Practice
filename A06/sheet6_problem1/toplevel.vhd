@@ -14,6 +14,7 @@ architecture rtl of toplevel is
 -- declaration section
 signal btn_debounced	:  std_logic;
 signal btn_debounced_edge	:  std_logic;
+signal button_in_wire	:  std_logic;
 
 constant counter_width : positive := 32;
 signal counter_reg : std_logic_vector(counter_width-1 downto 0) := (others => '0');
@@ -88,10 +89,12 @@ begin
 
 debouncer_top : debouncer
 	port map(
-		button_in	=> NOT USER_BTN,
+		button_in	=> button_in_wire,
 		clock		=> CLK12M,
 		dbounc_out	=> btn_debounced
 	);
+	
+	button_in_wire <= NOT USER_BTN;
 
 edge_detector_top : edge_detector
 	port map(

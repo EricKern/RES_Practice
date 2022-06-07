@@ -1,6 +1,6 @@
 Analysis & Synthesis report for sheet6_problem1
-Tue May 31 21:25:55 2022
-Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Tue Jun 07 19:09:16 2022
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 Patches 0.02i SJ Lite Edition
 
 
 ---------------------
@@ -9,27 +9,28 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   1. Legal Notice
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
-  4. Analysis & Synthesis Source Files Read
-  5. Analysis & Synthesis Resource Usage Summary
-  6. Analysis & Synthesis Resource Utilization by Entity
-  7. Analysis & Synthesis RAM Summary
-  8. Analysis & Synthesis IP Cores Summary
-  9. State Machine - |toplevel|fsm:fsm_top|current_state
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Source assignments for my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram
- 14. Parameter Settings for User Entity Instance: debouncer:debouncer_top|counter:my_counter
- 15. Parameter Settings for User Entity Instance: fsm:fsm_top|counter:fsm_counter
- 16. Parameter Settings for User Entity Instance: my_fifo:fifo_top|scfifo:scfifo_component
- 17. Parameter Settings for User Entity Instance: counter:counter_top
- 18. scfifo Parameter Settings by Entity Instance
- 19. Port Connectivity Checks: "counter:counter_top"
- 20. Port Connectivity Checks: "my_fifo:fifo_top"
- 21. Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"
- 22. Post-Synthesis Netlist Statistics for Top Partition
- 23. Elapsed Time Per Partition
- 24. Analysis & Synthesis Messages
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |toplevel|fsm:fsm_top|current_state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Source assignments for my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram
+ 15. Parameter Settings for User Entity Instance: debouncer:debouncer_top|counter:my_counter
+ 16. Parameter Settings for User Entity Instance: fsm:fsm_top|counter:fsm_counter
+ 17. Parameter Settings for User Entity Instance: my_fifo:fifo_top|scfifo:scfifo_component
+ 18. Parameter Settings for User Entity Instance: counter:counter_top
+ 19. scfifo Parameter Settings by Entity Instance
+ 20. Port Connectivity Checks: "counter:counter_top"
+ 21. Port Connectivity Checks: "my_fifo:fifo_top"
+ 22. Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"
+ 23. Post-Synthesis Netlist Statistics for Top Partition
+ 24. Elapsed Time Per Partition
+ 25. Analysis & Synthesis Messages
 
 
 
@@ -53,24 +54,24 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
-+------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue May 31 21:25:55 2022       ;
-; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
-; Revision Name                      ; sheet6_problem1                             ;
-; Top-level Entity Name              ; toplevel                                    ;
-; Family                             ; Cyclone 10 LP                               ;
-; Total logic elements               ; 30                                          ;
-;     Total combinational functions  ; 30                                          ;
-;     Dedicated logic registers      ; 29                                          ;
-; Total registers                    ; 29                                          ;
-; Total pins                         ; 10                                          ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 8                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-+------------------------------------+---------------------------------------------+
++------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                                   ;
++------------------------------------+-----------------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Jun 07 19:09:16 2022                     ;
+; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 Patches 0.02i SJ Lite Edition ;
+; Revision Name                      ; sheet6_problem1                                           ;
+; Top-level Entity Name              ; toplevel                                                  ;
+; Family                             ; Cyclone 10 LP                                             ;
+; Total logic elements               ; 30                                                        ;
+;     Total combinational functions  ; 30                                                        ;
+;     Dedicated logic registers      ; 29                                                        ;
+; Total registers                    ; 29                                                        ;
+; Total pins                         ; 10                                                        ;
+; Total virtual pins                 ; 0                                                         ;
+; Total memory bits                  ; 8                                                         ;
+; Embedded Multiplier 9-bit elements ; 0                                                         ;
+; Total PLLs                         ; 0                                                         ;
++------------------------------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -159,31 +160,48 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                            ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
-; toplevel.vhd                     ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd                         ;         ;
-; debouncer.vhd                    ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd                        ;         ;
-; edge_detector.vhd                ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd                    ;         ;
-; fsm.vhd                          ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/fsm.vhd                              ;         ;
-; counter.vhd                      ; yes             ; User VHDL File               ; /home/hwp1/Desktop/sheet6_problem1/counter.vhd                          ;         ;
-; my_fifo.vhd                      ; yes             ; User Wizard-Generated File   ; /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd                          ;         ;
-; scfifo.tdf                       ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf     ;         ;
-; a_regfifo.inc                    ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_regfifo.inc  ;         ;
-; a_dpfifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_dpfifo.inc   ;         ;
-; a_i2fifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_i2fifo.inc   ;         ;
-; a_fffifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_fffifo.inc   ;         ;
-; a_f2fifo.inc                     ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/a_f2fifo.inc   ;         ;
-; aglobal191.inc                   ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/aglobal191.inc ;         ;
-; db/scfifo_6e31.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf                   ;         ;
-; db/a_dpfifo_dk31.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf                 ;         ;
-; db/a_fefifo_i4e.tdf              ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf                  ;         ;
-; db/cntr_2o7.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/cntr_2o7.tdf                      ;         ;
-; db/altsyncram_fdm1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf               ;         ;
-; db/cntr_mnb.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/hwp1/Desktop/sheet6_problem1/db/cntr_mnb.tdf                      ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------+---------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                           ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                       ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; toplevel.vhd                     ; yes             ; User VHDL File               ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd           ;         ;
+; debouncer.vhd                    ; yes             ; User VHDL File               ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd          ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File               ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/edge_detector.vhd      ;         ;
+; fsm.vhd                          ; yes             ; User VHDL File               ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd                ;         ;
+; counter.vhd                      ; yes             ; User VHDL File               ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/counter.vhd            ;         ;
+; my_fifo.vhd                      ; yes             ; User Wizard-Generated File   ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd            ;         ;
+; scfifo.tdf                       ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf                  ;         ;
+; a_regfifo.inc                    ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/a_regfifo.inc               ;         ;
+; a_dpfifo.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/a_dpfifo.inc                ;         ;
+; a_i2fifo.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/a_i2fifo.inc                ;         ;
+; a_fffifo.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/a_fffifo.inc                ;         ;
+; a_f2fifo.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/a_f2fifo.inc                ;         ;
+; aglobal191.inc                   ; yes             ; Megafunction                 ; d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/aglobal191.inc              ;         ;
+; db/scfifo_6e31.tdf               ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/scfifo_6e31.tdf     ;         ;
+; db/a_dpfifo_dk31.tdf             ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_dpfifo_dk31.tdf   ;         ;
+; db/a_fefifo_i4e.tdf              ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_fefifo_i4e.tdf    ;         ;
+; db/cntr_2o7.tdf                  ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/cntr_2o7.tdf        ;         ;
+; db/altsyncram_fdm1.tdf           ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/altsyncram_fdm1.tdf ;         ;
+; db/cntr_mnb.tdf                  ; yes             ; Auto-Generated Megafunction  ; E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/cntr_mnb.tdf        ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------+
@@ -480,56 +498,77 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue May 31 21:25:41 2022
+    Info: Version 19.1.0 Build 670 09/22/2019 Patches 0.02i SJ Lite Edition
+    Info: Processing started: Tue Jun 07 19:09:06 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off sheet6_problem1 -c sheet6_problem1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20029): Only one processor detected - disabling parallel compilation
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 0 entities, in source file signal_generator_pkg.vhd
+    Info (12022): Found design unit 1: signal_generator_pkg File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/signal_generator_pkg.vhd Line: 5
+    Info (12022): Found design unit 2: signal_generator_pkg-body File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/signal_generator_pkg.vhd Line: 18
+Info (12021): Found 2 design units, including 1 entities, in source file toplevel_tb.vhd
+    Info (12022): Found design unit 1: toplevel_tb-behavior File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel_tb.vhd Line: 9
+    Info (12023): Found entity 1: toplevel_tb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel_tb.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file fsm_tb.vhd
+    Info (12022): Found design unit 1: fsm_tb-a File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm_tb.vhd Line: 9
+    Info (12023): Found entity 1: fsm_tb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm_tb.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file signal_generator.vhd
+    Info (12022): Found design unit 1: signal_generator-top_level File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/signal_generator.vhd Line: 17
+    Info (12023): Found entity 1: signal_generator File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/signal_generator.vhd Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file edge_detector_tb.vhd
+    Info (12022): Found design unit 1: edge_detector_tb-behavior File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/edge_detector_tb.vhd Line: 9
+    Info (12023): Found entity 1: edge_detector_tb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/edge_detector_tb.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file counter_tb.vhd
+    Info (12022): Found design unit 1: counter_tb-test File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/counter_tb.vhd Line: 9
+    Info (12023): Found entity 1: counter_tb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/counter_tb.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file debouncer_tb.vhd
+    Info (12022): Found design unit 1: debouncer_tb-behavior File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer_tb.vhd Line: 9
+    Info (12023): Found entity 1: debouncer_tb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer_tb.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file toplevel.vhd
-    Info (12022): Found design unit 1: toplevel-rtl File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 12
-    Info (12023): Found entity 1: toplevel File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 4
+    Info (12022): Found design unit 1: toplevel-rtl File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 12
+    Info (12023): Found entity 1: toplevel File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file debouncer.vhd
-    Info (12022): Found design unit 1: debouncer-a_debouncer File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 10
-    Info (12023): Found entity 1: debouncer File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 5
+    Info (12022): Found design unit 1: debouncer-a_debouncer File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 13
+    Info (12023): Found entity 1: debouncer File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
-    Info (12022): Found design unit 1: edge_detector-my_edge_detector File: /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd Line: 12
-    Info (12023): Found entity 1: edge_detector File: /home/hwp1/Desktop/sheet6_problem1/edge_detector.vhd Line: 4
+    Info (12022): Found design unit 1: edge_detector-my_edge_detector File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/edge_detector.vhd Line: 12
+    Info (12023): Found entity 1: edge_detector File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/edge_detector.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file fsm.vhd
-    Info (12022): Found design unit 1: fsm-a File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 44
-    Info (12023): Found entity 1: fsm File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 34
+    Info (12022): Found design unit 1: fsm-a File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 44
+    Info (12023): Found entity 1: fsm File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 34
 Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
-    Info (12022): Found design unit 1: counter-my_counter File: /home/hwp1/Desktop/sheet6_problem1/counter.vhd Line: 16
-    Info (12023): Found entity 1: counter File: /home/hwp1/Desktop/sheet6_problem1/counter.vhd Line: 5
+    Info (12022): Found design unit 1: counter-my_counter File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/counter.vhd Line: 16
+    Info (12023): Found entity 1: counter File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/counter.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file my_fifo.vhd
-    Info (12022): Found design unit 1: my_fifo-SYN File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 58
-    Info (12023): Found entity 1: my_fifo File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 43
+    Info (12022): Found design unit 1: my_fifo-SYN File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd Line: 58
+    Info (12023): Found entity 1: my_fifo File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd Line: 43
 Info (12127): Elaborating entity "toplevel" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at toplevel.vhd(25): used implicit default value for signal "fsm_reset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 25
-Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:debouncer_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 89
-Warning (10492): VHDL Process Statement warning at debouncer.vhd(42): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 42
-Warning (10492): VHDL Process Statement warning at debouncer.vhd(47): signal "counter_reg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 47
-Warning (10492): VHDL Process Statement warning at debouncer.vhd(48): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 48
-Warning (10631): VHDL Process Statement warning at debouncer.vhd(40): inferring latch(es) for signal or variable "debounce_buf", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 40
-Info (10041): Inferred latch for "debounce_buf" at debouncer.vhd(40) File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 40
-Info (12128): Elaborating entity "counter" for hierarchy "debouncer:debouncer_top|counter:my_counter" File: /home/hwp1/Desktop/sheet6_problem1/debouncer.vhd Line: 30
-Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:edge_detector_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 96
-Info (12128): Elaborating entity "fsm" for hierarchy "fsm:fsm_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 103
-Warning (10812): VHDL warning at fsm.vhd(80): sensitivity list already contains counter_reg File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Warning (10492): VHDL Process Statement warning at fsm.vhd(86): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 86
-Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "reset_count", which holds its previous value in one or more paths through the process File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "reset_count" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State3" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State2o" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State2" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State1o" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State1" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State0" at fsm.vhd(80) File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 80
-Info (12128): Elaborating entity "counter" for hierarchy "fsm:fsm_top|counter:fsm_counter" File: /home/hwp1/Desktop/sheet6_problem1/fsm.vhd Line: 69
-Info (12128): Elaborating entity "my_fifo" for hierarchy "my_fifo:fifo_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 116
-Info (12128): Elaborating entity "scfifo" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
-Info (12130): Elaborated megafunction instantiation "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
-Info (12133): Instantiated megafunction "my_fifo:fifo_top|scfifo:scfifo_component" with the following parameter: File: /home/hwp1/Desktop/sheet6_problem1/my_fifo.vhd Line: 96
+Warning (10541): VHDL Signal Declaration warning at toplevel.vhd(26): used implicit default value for signal "fsm_reset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 26
+Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:debouncer_top" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 90
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(46): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 46
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(51): signal "counter_reg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 51
+Warning (10492): VHDL Process Statement warning at debouncer.vhd(52): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 52
+Warning (10631): VHDL Process Statement warning at debouncer.vhd(44): inferring latch(es) for signal or variable "debounce_buf", which holds its previous value in one or more paths through the process File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 44
+Info (10041): Inferred latch for "debounce_buf" at debouncer.vhd(44) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 44
+Info (12128): Elaborating entity "counter" for hierarchy "debouncer:debouncer_top|counter:my_counter" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/debouncer.vhd Line: 34
+Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:edge_detector_top" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 99
+Info (12128): Elaborating entity "fsm" for hierarchy "fsm:fsm_top" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 106
+Warning (10812): VHDL warning at fsm.vhd(80): sensitivity list already contains counter_reg File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Warning (10492): VHDL Process Statement warning at fsm.vhd(86): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 86
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "reset_count", which holds its previous value in one or more paths through the process File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "reset_count" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State3" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State2o" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State2" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State1o" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State1" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State0" at fsm.vhd(80) File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 80
+Info (12128): Elaborating entity "counter" for hierarchy "fsm:fsm_top|counter:fsm_counter" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/fsm.vhd Line: 69
+Info (12128): Elaborating entity "my_fifo" for hierarchy "my_fifo:fifo_top" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 119
+Info (12128): Elaborating entity "scfifo" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd Line: 96
+Info (12130): Elaborated megafunction instantiation "my_fifo:fifo_top|scfifo:scfifo_component" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd Line: 96
+Info (12133): Instantiated megafunction "my_fifo:fifo_top|scfifo:scfifo_component" with the following parameter: File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/my_fifo.vhd Line: 96
     Info (12134): Parameter "add_ram_output_register" = "OFF"
     Info (12134): Parameter "intended_device_family" = "Cyclone 10 LP"
     Info (12134): Parameter "lpm_numwords" = "4"
@@ -541,40 +580,40 @@ Info (12133): Instantiated megafunction "my_fifo:fifo_top|scfifo:scfifo_componen
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
 Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_6e31.tdf
-    Info (12023): Found entity 1: scfifo_6e31 File: /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf Line: 25
-Info (12128): Elaborating entity "scfifo_6e31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated" File: /opt/intelFPGA_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf Line: 300
+    Info (12023): Found entity 1: scfifo_6e31 File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/scfifo_6e31.tdf Line: 25
+Info (12128): Elaborating entity "scfifo_6e31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated" File: d:/intelfpga_lite/19.1/quartus/libraries/megafunctions/scfifo.tdf Line: 300
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_dk31.tdf
-    Info (12023): Found entity 1: a_dpfifo_dk31 File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 29
-Info (12128): Elaborating entity "a_dpfifo_dk31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo" File: /home/hwp1/Desktop/sheet6_problem1/db/scfifo_6e31.tdf Line: 37
+    Info (12023): Found entity 1: a_dpfifo_dk31 File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_dpfifo_dk31.tdf Line: 29
+Info (12128): Elaborating entity "a_dpfifo_dk31" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/scfifo_6e31.tdf Line: 37
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_fefifo_i4e.tdf
-    Info (12023): Found entity 1: a_fefifo_i4e File: /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf Line: 25
-Info (12128): Elaborating entity "a_fefifo_i4e" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 42
+    Info (12023): Found entity 1: a_fefifo_i4e File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_fefifo_i4e.tdf Line: 25
+Info (12128): Elaborating entity "a_fefifo_i4e" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_dpfifo_dk31.tdf Line: 42
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_2o7.tdf
-    Info (12023): Found entity 1: cntr_2o7 File: /home/hwp1/Desktop/sheet6_problem1/db/cntr_2o7.tdf Line: 26
-Info (12128): Elaborating entity "cntr_2o7" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw" File: /home/hwp1/Desktop/sheet6_problem1/db/a_fefifo_i4e.tdf Line: 38
+    Info (12023): Found entity 1: cntr_2o7 File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/cntr_2o7.tdf Line: 26
+Info (12128): Elaborating entity "cntr_2o7" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_fefifo_i4e.tdf Line: 38
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_fdm1.tdf
-    Info (12023): Found entity 1: altsyncram_fdm1 File: /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_fdm1" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 43
+    Info (12023): Found entity 1: altsyncram_fdm1 File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/altsyncram_fdm1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_fdm1" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_dpfifo_dk31.tdf Line: 43
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_mnb.tdf
-    Info (12023): Found entity 1: cntr_mnb File: /home/hwp1/Desktop/sheet6_problem1/db/cntr_mnb.tdf Line: 26
-Info (12128): Elaborating entity "cntr_mnb" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count" File: /home/hwp1/Desktop/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 44
-Info (12128): Elaborating entity "counter" for hierarchy "counter:counter_top" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 129
+    Info (12023): Found entity 1: cntr_mnb File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/cntr_mnb.tdf Line: 26
+Info (12128): Elaborating entity "cntr_mnb" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/a_dpfifo_dk31.tdf Line: 44
+Info (12128): Elaborating entity "counter" for hierarchy "counter:counter_top" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 132
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 21 registers lost all their fanouts during netlist optimizations.
-Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram|ALTSYNCRAM" File: /home/hwp1/Desktop/sheet6_problem1/db/altsyncram_fdm1.tdf Line: 36
+Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram|ALTSYNCRAM" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/db/altsyncram_fdm1.tdf Line: 36
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "USER_BTN" File: /home/hwp1/Desktop/sheet6_problem1/toplevel.vhd Line: 7
+    Warning (15610): No output dependent on input pin "USER_BTN" File: E:/VHDL_Tools/sheet6_problem1_withTB/sheet6_problem1_withTB/toplevel.vhd Line: 7
 Info (21057): Implemented 44 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 8 output pins
     Info (21061): Implemented 30 logic cells
     Info (21064): Implemented 4 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 1088 megabytes
-    Info: Processing ended: Tue May 31 21:25:55 2022
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:10
+    Info: Peak virtual memory: 4808 megabytes
+    Info: Processing ended: Tue Jun 07 19:09:16 2022
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:20
 
 

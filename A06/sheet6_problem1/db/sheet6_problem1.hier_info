@@ -5,14 +5,14 @@ CLK12M => fsm:fsm_top.clk
 CLK12M => my_fifo:fifo_top.clock
 CLK12M => counter:counter_top.clk
 USER_BTN => debouncer:debouncer_top.button_in
-LED[0] << counter:counter_top.counter_o[25]
-LED[1] << counter:counter_top.counter_o[26]
-LED[2] << counter:counter_top.counter_o[27]
-LED[3] << counter:counter_top.counter_o[28]
-LED[4] << my_fifo:fifo_top.q[0]
-LED[5] << my_fifo:fifo_top.q[1]
-LED[6] << my_fifo:fifo_top.q[2]
-LED[7] << my_fifo:fifo_top.q[3]
+LED[0] <= counter:counter_top.counter_o[25]
+LED[1] <= counter:counter_top.counter_o[26]
+LED[2] <= counter:counter_top.counter_o[27]
+LED[3] <= counter:counter_top.counter_o[28]
+LED[4] <= my_fifo:fifo_top.q[0]
+LED[5] <= my_fifo:fifo_top.q[1]
+LED[6] <= my_fifo:fifo_top.q[2]
+LED[7] <= my_fifo:fifo_top.q[3]
 
 
 |toplevel|debouncer:debouncer_top
