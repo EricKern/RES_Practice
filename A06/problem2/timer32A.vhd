@@ -19,8 +19,7 @@ end timer32A;
 
 architecture arch1 of timer32A is
 -- Points for Imporvement:
--- You have to read the current_val_register completely to get a new value. Only reset possible.
--- No Idea about functionality of clear register. Self resetting (user writes allways 1)
+-- You have to read the current_val_register completely to get a new value. Only reset possible
 
 constant all_zero32 		:	std_logic_vector(31 downto 0) := (others => '0');
 
@@ -32,6 +31,7 @@ signal current_val_reg	:	std_logic_vector(31 downto 0);
 signal counter_o_wire	:	std_logic_vector(31 downto 0);
 
 signal read_flags	   	:  std_logic_vector(3 downto 0);
+signal clear_toggler    :  std_logic;  -- used to clear interrupt no matter what is written to the clear register
 	 
 
 begin
@@ -49,9 +49,9 @@ begin
 
 
 	set_ir:
-	process(counter_o_wire, clear_reg(0)) is
+	process(counter_o_wire, clear_toggler) is
 	begin
-		if(clear_reg(0) = '1') then
+		if(clear_toggler'event) then
 			status_reg(0) <= '0';
 		elsif(counter_o_wire = all_zero32 AND control_reg(2) = '1') then
 			status_reg(0) <= '1';
@@ -99,6 +99,7 @@ begin
 						 
 					when B"0000_1010" => -- clear register
 						 clear_reg <= data_in;
+						 clear_toggler <= NOT clear_toggler;
 						 
 					when others => -- 'U', 'X', '-', etc.
 						 data_out <= (others => 'X');
