@@ -51,7 +51,7 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
 		--200.000.000 counter => 1011 1110 1011 1100 0010 0000 0000  (unsigned)
-		assert led_tb = "00001011" report "Addition faild, expected result: 2" severity failure;
+		assert led_tb = "00001011" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--read test
@@ -60,7 +60,7 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
 		--350.000.002 counter => 1011 1110 1011 1100 0010 0000 0010  (unsigned)
-		assert led_tb = "10111011" report "Addition faild, expected result: 2" severity failure;
+		assert led_tb = "10111011" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--write test 2
@@ -69,7 +69,7 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
 		--400.000.004 counter => 1 0111 1101 0111 1000 0100 0000 0100 (unsigned)
-		assert led_tb = "10110111" report "Addition faild, expected result: 2" severity failure;
+		assert led_tb = "10110111" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--reset test 
@@ -78,7 +78,7 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
 		--650.000.006 counter => 10 0110 1011 1110 0011 0110 1000 0110 (unsigned)
-		assert led_tb = "00000000" report "Addition faild, expected result: 2" severity failure;
+		assert led_tb = "00000000" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 
 		report "No errors" severity note;

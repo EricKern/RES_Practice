@@ -56,9 +56,9 @@ begin
 		reset_tb <= '1';
 		wait for CLK_PERIOD;
 		reset_tb <= '0';
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in nothing pressed" severity failure;
+		assert read_enable_tb = '0' report "failed in nothing pressed" severity failure;
+		assert reset_line_tb = '0' report "failed in nothing pressed" severity failure;
 		wait for CLK_PERIOD;
 		
 		-- Press button less than 1 second
@@ -66,13 +66,13 @@ begin
 		wait for 400 ms;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '1' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '1' report "failed in button less than 1 second" severity failure;
+		assert read_enable_tb = '0' report "failed in button less than 1 second" severity failure;
+		assert reset_line_tb = '0' report "failed in button less than 1 second" severity failure;
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in button less than 1 second" severity failure;
+		assert read_enable_tb = '0' report "failed in button less than 1 second" severity failure;
+		assert reset_line_tb = '0' report "failed in button less than 1 second" severity failure;
 		wait for CLK_PERIOD;
 		
 		-- Press button more than 1 second and less than 2 seconds
@@ -80,13 +80,13 @@ begin
 		wait for 1500 ms;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '1' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert read_enable_tb = '1' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert reset_line_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert read_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert reset_line_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
 		wait for CLK_PERIOD;
 		
 		-- Press button more than 2 seconds
@@ -94,13 +94,13 @@ begin
 		wait for 2100 ms;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '1' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in button more than 2 seconds" severity failure;
+		assert read_enable_tb = '0' report "failed in button more than 2 seconds" severity failure;
+		assert reset_line_tb = '1' report "failed in button more than 2 seconds" severity failure;
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert read_enable_tb = '0' report "leds are not off during reset" severity failure;
-		assert reset_line_tb = '0' report "leds are not off during reset" severity failure;
+		assert write_enable_tb = '0' report "failed in button more than 2 seconds" severity failure;
+		assert read_enable_tb = '0' report "failed in button more than 2 seconds" severity failure;
+		assert reset_line_tb = '0' report "failed in button more than 2 seconds" severity failure;
 		
 		report "No errors" severity note;
 		wait ;

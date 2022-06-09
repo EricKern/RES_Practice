@@ -46,16 +46,16 @@ ARCHITECTURE behavior OF edge_detector_tb IS
 		begin 		 
 			input_tb <= '1';
 			wait for CLK_PERIOD;
-			assert output_tb = '1' report "counter mismatch!" severity failure;
+			assert output_tb = '1' report "failed" severity failure;
 			input_tb <= '0';
 			wait for CLK_PERIOD;
-			assert output_tb = '1' report "counter mismatch!" severity failure;
+			assert output_tb = '1' report "failed" severity failure;
 			input_tb <= '0';
 			wait for 3*CLK_PERIOD;
-			assert output_tb = '0' report "counter mismatch!" severity failure;
+			assert output_tb = '0' report "failed" severity failure;
 			input_tb <= '1';
 			wait for CLK_PERIOD;
-			assert output_tb = '1' report "counter mismatch!" severity failure;
+			assert output_tb = '1' report "failed" severity failure;
 			report "No errors" severity note;
 			wait ;
 		 end process;
