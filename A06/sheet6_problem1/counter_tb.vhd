@@ -10,7 +10,7 @@ architecture test of counter_tb is
 
 component counter is
 generic (
-	bit_width : positive := 4
+	bit_width : positive := 32
 );
 port(
 	clk			: in std_logic;
@@ -21,9 +21,9 @@ end component;
 
 signal clk			:  std_logic;
 signal reset		:  std_logic;
-signal counter_o	:  std_logic_vector(3 downto 0);
+signal counter_o	:  std_logic_vector(31 downto 0);
 
-constant CLK_PERIOD : time := 10 ns;
+constant CLK_PERIOD : time := 83.333333 ns; --10ns
 
 begin
 
@@ -49,49 +49,25 @@ process
 begin
 	reset <= '1';
 	wait for 2*CLK_PERIOD;
-	assert counter_o = x"0" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 0 report "counter mismatch!" severity failure;
 	reset <= '0';
 	wait for CLK_PERIOD;
-	assert counter_o = x"1" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 1 report "counter mismatch!" severity failure;
 	wait for CLK_PERIOD;
-	assert counter_o = x"2" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 2 report "counter mismatch!" severity failure;
 	wait for CLK_PERIOD;
-	assert counter_o = x"3" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 3 report "counter mismatch!" severity failure;
 	wait for CLK_PERIOD;
-	assert counter_o = x"4" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"5" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"6" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"7" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"8" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"9" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"A" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"B" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"C" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"D" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"E" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"F" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"0" report "counter mismatch!" severity failure;
-	wait for CLK_PERIOD;
-	assert counter_o = x"1" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 4 report "counter mismatch!" severity failure;
+	wait for 5*CLK_PERIOD;
+	assert to_integer(unsigned(counter_o)) = 9 report "counter mismatch!" severity failure;
 	reset <= '1';
 	wait for CLK_PERIOD;
-	assert counter_o = x"0" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 0 report "counter mismatch!" severity failure;
 	wait for CLK_PERIOD;
-	assert counter_o = x"0" report "counter mismatch!" severity failure;
+	assert to_integer(unsigned(counter_o)) = 0 report "counter mismatch!" severity failure;
 	wait for CLK_PERIOD;
-    report "No errors" severity note;
+   report "No errors" severity note;
 	wait ;
 
 end process;

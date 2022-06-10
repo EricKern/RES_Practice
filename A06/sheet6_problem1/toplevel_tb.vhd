@@ -21,7 +21,7 @@ ARCHITECTURE behavior OF toplevel_tb IS
 	signal user_btn_tb : std_logic := '0';
 	signal led_tb	: std_logic_vector(7 downto 0) := (others =>'0');
 
-	constant CLK_PERIOD : time := 10 ns;
+	constant CLK_PERIOD : time := 83.333333 ns; --10 ns
  
 BEGIN-- Instantiate the Unit Under Test (UUT)
 	uut: toplevel 
@@ -47,37 +47,53 @@ BEGIN-- Instantiate the Unit Under Test (UUT)
 		user_btn_tb <= '0';
 		wait for 150000000*CLK_PERIOD; -- do 150.000.000 count cycles
 		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
+		user_btn_tb <= '0';
 		wait for 500 ms; -- do 50.000.000 count cycles
+		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
-		--200.000.000 counter => 1011 1110 1011 1100 0010 0000 0000  (unsigned)
-		assert led_tb = "00001011" report "Failed: Wrong LED output" severity failure;
+		--200.000.003 counter => 1011 1110 1011 1100 0010 0000 0011  (unsigned)
+		assert led_tb = "00000001" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--read test
 		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
+		user_btn_tb <= '0';
 		wait for 1500 ms; -- do 150.000.000 count cycles
+		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
-		--350.000.002 counter => 1011 1110 1011 1100 0010 0000 0010  (unsigned)
+		--350.000.007 counter => 1011 1110 1011 1100 0010 0000 0111  (unsigned)
 		assert led_tb = "10111011" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--write test 2
 		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
+		user_btn_tb <= '0';
 		wait for 500 ms; -- do 50.000.000 count cycles
+		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
-		--400.000.004 counter => 1 0111 1101 0111 1000 0100 0000 0100 (unsigned)
+		--400.000.011 counter => 1 0111 1101 0111 1000 0100 0000 1011 (unsigned)
 		assert led_tb = "10110111" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 		
 		--reset test 
 		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
+		user_btn_tb <= '0';
 		wait for 2500 ms; -- do 250.000.000 count cycles
+		user_btn_tb <= '1';
+		wait for CLK_PERIOD;
 		user_btn_tb <= '0';
 		wait for CLK_PERIOD;
-		--650.000.006 counter => 10 0110 1011 1110 0011 0110 1000 0110 (unsigned)
+		--650.000.015 counter => 10 0110 1011 1110 0011 0110 1000 1111 (unsigned)
 		assert led_tb = "00000000" report "Failed: Wrong LED output" severity failure;
 		wait for CLK_PERIOD;
 

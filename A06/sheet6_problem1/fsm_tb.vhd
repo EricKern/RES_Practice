@@ -26,7 +26,7 @@ architecture a of fsm_tb is
 		);
 	end component;
 
-	constant CLK_PERIOD : time := 10 ns;
+	constant CLK_PERIOD : time := 83.333333 ns; --10ns
 
 begin
 
@@ -63,12 +63,16 @@ begin
 		
 		-- Press button less than 1 second
 		button_tb <= '1';
-		wait for 400 ms;
+		wait for CLK_PERIOD;
+		button_tb <= '0';
+		wait for 900 ms;
+		button_tb <= '1';
+		wait for CLK_PERIOD;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
-		assert write_enable_tb = '1' report "failed in button less than 1 second" severity failure;
-		assert read_enable_tb = '0' report "failed in button less than 1 second" severity failure;
-		assert reset_line_tb = '0' report "failed in button less than 1 second" severity failure;
+		assert write_enable_tb = '1' report "failed in button less than 1 second write not '1'" severity failure;
+		assert read_enable_tb = '0' report "failed in button less than 1 second read not '0'" severity failure;
+		assert reset_line_tb = '0' report "failed in button less than 1 second reset not '0'" severity failure;
 		wait for CLK_PERIOD;
 		assert write_enable_tb = '0' report "failed in button less than 1 second" severity failure;
 		assert read_enable_tb = '0' report "failed in button less than 1 second" severity failure;
@@ -77,7 +81,29 @@ begin
 		
 		-- Press button more than 1 second and less than 2 seconds
 		button_tb <= '1';
-		wait for 1500 ms;
+		wait for CLK_PERIOD;
+		button_tb <= '0';
+		wait for 1100 ms;
+		button_tb <= '1';
+		wait for CLK_PERIOD;
+		button_tb <= '0';
+		wait for CLK_PERIOD;
+		assert write_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert read_enable_tb = '1' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert reset_line_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		wait for CLK_PERIOD;
+		assert write_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert read_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		assert reset_line_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
+		wait for CLK_PERIOD;
+		
+		-- Press button more than 1 second and less than 2 seconds
+		button_tb <= '1';
+		wait for CLK_PERIOD;
+		button_tb <= '0';
+		wait for 1900 ms;
+		button_tb <= '1';
+		wait for CLK_PERIOD;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
 		assert write_enable_tb = '0' report "failed in button more than 1 second less than 2 seconds" severity failure;
@@ -91,7 +117,11 @@ begin
 		
 		-- Press button more than 2 seconds
 		button_tb <= '1';
+		wait for CLK_PERIOD;
+		button_tb <= '0';
 		wait for 2100 ms;
+		button_tb <= '1';
+		wait for CLK_PERIOD;
 		button_tb <= '0';
 		wait for CLK_PERIOD;
 		assert write_enable_tb = '0' report "failed in button more than 2 seconds" severity failure;

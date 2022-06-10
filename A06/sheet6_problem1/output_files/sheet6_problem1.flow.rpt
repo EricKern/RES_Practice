@@ -1,5 +1,5 @@
 Flow report for sheet6_problem1
-Thu Jun  9 09:24:02 2022
+Fri Jun 10 13:20:14 2022
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Jun  9 09:24:02 2022       ;
+; Flow Status                        ; Successful - Fri Jun 10 13:20:14 2022       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; sheet6_problem1                             ;
 ; Top-level Entity Name              ; toplevel                                    ;
 ; Family                             ; Cyclone 10 LP                               ;
 ; Device                             ; 10CL025YU256C8G                             ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 30 / 24,624 ( < 1 % )                       ;
-;     Total combinational functions  ; 30 / 24,624 ( < 1 % )                       ;
-;     Dedicated logic registers      ; 29 / 24,624 ( < 1 % )                       ;
-; Total registers                    ; 29                                          ;
+; Total logic elements               ; 132 / 24,624 ( < 1 % )                      ;
+;     Total combinational functions  ; 131 / 24,624 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 82 / 24,624 ( < 1 % )                       ;
+; Total registers                    ; 82                                          ;
 ; Total pins                         ; 10 / 151 ( 7 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 8 / 608,256 ( < 1 % )                       ;
+; Total memory bits                  ; 16 / 608,256 ( < 1 % )                      ;
 ; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                             ;
 ; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
 +------------------------------------+---------------------------------------------+
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/09/2022 09:23:12 ;
+; Start date & time ; 06/10/2022 13:19:25 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; sheet6_problem1     ;
 +-------------------+---------------------+
@@ -76,19 +76,40 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+-----------------+-------------+-----------------------------------+
 ; Assignment Name                      ; Value                                  ; Default Value   ; Entity Name ; Section Id                        ;
 +--------------------------------------+----------------------------------------+-----------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID                ; 8796759363876.165475939204217          ; --              ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID                ; 8796759363876.165485996510066          ; --              ; --          ; --                                ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; debouncer_tb                      ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; fsm_tb                            ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; toplevel_tb                       ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; edge_detector_tb                  ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; counter_tb                        ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --              ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --              ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --              ; --          ; eda_board_design_signal_integrity ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --              ; --          ; eda_board_design_symbol           ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; fsm_tb                                 ; --              ; --          ; eda_simulation                    ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; debouncer_tb                           ; --              ; --          ; eda_simulation                    ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --              ; --          ; eda_simulation                    ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>          ; --          ; --                                ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_FILE                  ; debouncer_tb.vhd                       ; --              ; --          ; debouncer_tb                      ;
 ; EDA_TEST_BENCH_FILE                  ; fsm_tb.vhd                             ; --              ; --          ; fsm_tb                            ;
+; EDA_TEST_BENCH_FILE                  ; toplevel_tb.vhd                        ; --              ; --          ; toplevel_tb                       ;
+; EDA_TEST_BENCH_FILE                  ; edge_detector_tb.vhd                   ; --              ; --          ; edge_detector_tb                  ;
+; EDA_TEST_BENCH_FILE                  ; counter_tb.vhd                         ; --              ; --          ; counter_tb                        ;
+; EDA_TEST_BENCH_MODULE_NAME           ; debouncer_tb                           ; --              ; --          ; debouncer_tb                      ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; fsm_tb                                 ; --              ; --          ; fsm_tb                            ;
+; EDA_TEST_BENCH_MODULE_NAME           ; toplevel_tb                            ; --              ; --          ; toplevel_tb                       ;
+; EDA_TEST_BENCH_MODULE_NAME           ; edge_detector_tb                       ; --              ; --          ; edge_detector_tb                  ;
+; EDA_TEST_BENCH_MODULE_NAME           ; counter_tb                             ; --              ; --          ; counter_tb                        ;
 ; EDA_TEST_BENCH_NAME                  ; fsm_tb                                 ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; edge_detector_tb                       ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; counter_tb                             ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; toplevel_tb                            ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; debouncer_tb                           ; --              ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 200 ns                                 ; --              ; --          ; debouncer_tb                      ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 6005 ms                                ; --              ; --          ; fsm_tb                            ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 215 ms                                 ; --              ; --          ; toplevel_tb                       ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 5 ms                                   ; --              ; --          ; edge_detector_tb                  ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 10 ms                                  ; --              ; --          ; counter_tb                        ;
 ; EDA_TIME_SCALE                       ; 1 ps                                   ; --              ; --          ; eda_simulation                    ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --              ; --          ; --                                ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --              ; --          ; --                                ;
@@ -109,12 +130,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:25     ; 1.0                     ; 1091 MB             ; 00:00:19                           ;
-; Fitter               ; 00:00:10     ; 1.0                     ; 1257 MB             ; 00:00:07                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 927 MB              ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.0                     ; 894 MB              ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 1142 MB             ; 00:00:01                           ;
-; Total                ; 00:00:44     ; --                      ; --                  ; 00:00:31                           ;
+; Analysis & Synthesis ; 00:00:22     ; 1.0                     ; 1091 MB             ; 00:00:18                           ;
+; Fitter               ; 00:00:12     ; 1.0                     ; 1257 MB             ; 00:00:09                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 921 MB              ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.0                     ; 893 MB              ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 1145 MB             ; 00:00:01                           ;
+; Total                ; 00:00:42     ; --                      ; --                  ; 00:00:32                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

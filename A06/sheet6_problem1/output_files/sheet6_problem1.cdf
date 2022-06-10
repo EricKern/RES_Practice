@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10CL025YU256) Path("/home/hwp1/Desktop/sheet6_problem1/output_files/") File("sheet6_problem1.sof") MfrSpec(OpMask(1));
+		Device PartName(10CL025YU256) Path("/home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/output_files/") File("sheet6_problem1.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

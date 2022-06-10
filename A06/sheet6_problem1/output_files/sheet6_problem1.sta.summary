@@ -2,40 +2,136 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : -4.871
+TNS   : -24.725
+
 Type  : Slow 1200mV 85C Model Setup 'CLK12M'
-Slack : -2.531
-TNS   : -50.029
+Slack : -2.713
+TNS   : -149.922
+
+Type  : Slow 1200mV 85C Model Setup 'fsm:fsm_top|current_state.State3'
+Slack : -1.033
+TNS   : -14.025
+
+Type  : Slow 1200mV 85C Model Hold 'fsm:fsm_top|current_state.State3'
+Slack : 0.312
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'CLK12M'
-Slack : 0.467
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.692
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLK12M'
+Slack : -2.441
+TNS   : -61.054
+
+Type  : Slow 1200mV 85C Model Removal 'CLK12M'
+Slack : 0.816
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK12M'
 Slack : -3.201
-TNS   : -55.726
+TNS   : -137.738
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.331
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'fsm:fsm_top|current_state.State3'
+Slack : 0.451
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : -4.410
+TNS   : -22.524
 
 Type  : Slow 1200mV 0C Model Setup 'CLK12M'
-Slack : -2.135
-TNS   : -42.026
+Slack : -2.442
+TNS   : -130.143
+
+Type  : Slow 1200mV 0C Model Setup 'fsm:fsm_top|current_state.State3'
+Slack : -1.035
+TNS   : -14.498
+
+Type  : Slow 1200mV 0C Model Hold 'fsm:fsm_top|current_state.State3'
+Slack : 0.362
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'CLK12M'
-Slack : 0.418
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLK12M'
+Slack : -2.122
+TNS   : -51.283
+
+Type  : Slow 1200mV 0C Model Removal 'CLK12M'
+Slack : 0.756
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK12M'
 Slack : -3.201
-TNS   : -55.726
+TNS   : -137.738
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.072
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'fsm:fsm_top|current_state.State3'
+Slack : 0.331
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : -2.048
+TNS   : -9.110
 
 Type  : Fast 1200mV 0C Model Setup 'CLK12M'
-Slack : -0.559
-TNS   : -6.578
+Slack : -0.652
+TNS   : -20.030
+
+Type  : Fast 1200mV 0C Model Setup 'fsm:fsm_top|current_state.State3'
+Slack : -0.040
+TNS   : -0.066
 
 Type  : Fast 1200mV 0C Model Hold 'CLK12M'
-Slack : 0.193
+Slack : 0.151
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'fsm:fsm_top|current_state.State3'
+Slack : 0.223
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.382
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLK12M'
+Slack : -0.516
+TNS   : -5.160
+
+Type  : Fast 1200mV 0C Model Removal 'CLK12M'
+Slack : 0.358
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK12M'
 Slack : -3.000
-TNS   : -38.004
+TNS   : -96.578
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'edge_detector:edge_detector_top|input_buffer[0]'
+Slack : 0.287
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'fsm:fsm_top|current_state.State3'
+Slack : 0.330
+TNS   : 0.000
 
 ------------------------------------------------------------

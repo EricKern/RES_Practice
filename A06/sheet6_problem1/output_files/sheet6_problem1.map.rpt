@@ -1,5 +1,5 @@
 Analysis & Synthesis report for sheet6_problem1
-Thu Jun  9 09:23:36 2022
+Fri Jun 10 13:19:46 2022
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -15,8 +15,8 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   7. Analysis & Synthesis RAM Summary
   8. Analysis & Synthesis IP Cores Summary
   9. State Machine - |toplevel|fsm:fsm_top|current_state
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
  12. General Register Statistics
  13. Source assignments for my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram
  14. Parameter Settings for User Entity Instance: debouncer:debouncer_top|counter:my_counter
@@ -26,7 +26,7 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
  18. scfifo Parameter Settings by Entity Instance
  19. Port Connectivity Checks: "counter:counter_top"
  20. Port Connectivity Checks: "my_fifo:fifo_top"
- 21. Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"
+ 21. Port Connectivity Checks: "fsm:fsm_top"
  22. Post-Synthesis Netlist Statistics for Top Partition
  23. Elapsed Time Per Partition
  24. Analysis & Synthesis Messages
@@ -56,18 +56,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jun  9 09:23:36 2022       ;
+; Analysis & Synthesis Status        ; Successful - Fri Jun 10 13:19:46 2022       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; sheet6_problem1                             ;
 ; Top-level Entity Name              ; toplevel                                    ;
 ; Family                             ; Cyclone 10 LP                               ;
-; Total logic elements               ; 30                                          ;
-;     Total combinational functions  ; 30                                          ;
-;     Dedicated logic registers      ; 29                                          ;
-; Total registers                    ; 29                                          ;
+; Total logic elements               ; 132                                         ;
+;     Total combinational functions  ; 131                                         ;
+;     Dedicated logic registers      ; 82                                          ;
+; Total registers                    ; 82                                          ;
 ; Total pins                         ; 10                                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 8                                           ;
+; Total memory bits                  ; 16                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
 ; Total PLLs                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
@@ -191,47 +191,56 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimated Total logic elements              ; 30           ;
+; Estimated Total logic elements              ; 132          ;
 ;                                             ;              ;
-; Total combinational functions               ; 30           ;
+; Total combinational functions               ; 131          ;
 ; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 0            ;
-;     -- 3 input functions                    ; 1            ;
-;     -- <=2 input functions                  ; 29           ;
+;     -- 4 input functions                    ; 23           ;
+;     -- 3 input functions                    ; 35           ;
+;     -- <=2 input functions                  ; 73           ;
 ;                                             ;              ;
 ; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 3            ;
-;     -- arithmetic mode                      ; 27           ;
+;     -- normal mode                          ; 69           ;
+;     -- arithmetic mode                      ; 62           ;
 ;                                             ;              ;
-; Total registers                             ; 29           ;
-;     -- Dedicated logic registers            ; 29           ;
+; Total registers                             ; 82           ;
+;     -- Dedicated logic registers            ; 82           ;
 ;     -- I/O registers                        ; 0            ;
 ;                                             ;              ;
 ; I/O pins                                    ; 10           ;
-; Total memory bits                           ; 8            ;
+; Total memory bits                           ; 16           ;
 ;                                             ;              ;
 ; Embedded Multiplier 9-bit elements          ; 0            ;
 ;                                             ;              ;
 ; Maximum fan-out node                        ; CLK12M~input ;
-; Maximum fan-out                             ; 33           ;
-; Total fan-out                               ; 145          ;
-; Average fan-out                             ; 1.75         ;
+; Maximum fan-out                             ; 86           ;
+; Total fan-out                               ; 618          ;
+; Average fan-out                             ; 2.61         ;
 +---------------------------------------------+--------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                               ;
-+------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                        ; Entity Name     ; Library Name ;
-+------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |toplevel                                ; 30 (1)              ; 29 (0)                    ; 8           ; 0            ; 0       ; 0         ; 10   ; 0            ; |toplevel                                                                                                                  ; toplevel        ; work         ;
-;    |counter:counter_top|                 ; 29 (29)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|counter:counter_top                                                                                              ; counter         ; work         ;
-;    |my_fifo:fifo_top|                    ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top                                                                                                 ; my_fifo         ; work         ;
-;       |scfifo:scfifo_component|          ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component                                                                         ; scfifo          ; work         ;
-;          |scfifo_6e31:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated                                              ; scfifo_6e31     ; work         ;
-;             |a_dpfifo_dk31:dpfifo|       ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo                         ; a_dpfifo_dk31   ; work         ;
-;                |altsyncram_fdm1:FIFOram| ; 0 (0)               ; 0 (0)                     ; 8           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram ; altsyncram_fdm1 ; work         ;
-+------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                    ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                             ; Entity Name     ; Library Name ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |toplevel                                ; 131 (0)             ; 82 (0)                    ; 16          ; 0            ; 0       ; 0         ; 10   ; 0            ; |toplevel                                                                                                                                       ; toplevel        ; work         ;
+;    |counter:counter_top|                 ; 29 (29)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|counter:counter_top                                                                                                                   ; counter         ; work         ;
+;    |debouncer:debouncer_top|             ; 15 (5)              ; 10 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|debouncer:debouncer_top                                                                                                               ; debouncer       ; work         ;
+;       |counter:my_counter|               ; 10 (10)             ; 10 (10)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|debouncer:debouncer_top|counter:my_counter                                                                                            ; counter         ; work         ;
+;    |edge_detector:edge_detector_top|     ; 0 (0)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|edge_detector:edge_detector_top                                                                                                       ; edge_detector   ; work         ;
+;    |fsm:fsm_top|                         ; 74 (48)             ; 33 (7)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|fsm:fsm_top                                                                                                                           ; fsm             ; work         ;
+;       |counter:fsm_counter|              ; 26 (26)             ; 26 (26)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|fsm:fsm_top|counter:fsm_counter                                                                                                       ; counter         ; work         ;
+;    |my_fifo:fifo_top|                    ; 13 (0)              ; 8 (0)                     ; 16          ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top                                                                                                                      ; my_fifo         ; work         ;
+;       |scfifo:scfifo_component|          ; 13 (0)              ; 8 (0)                     ; 16          ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component                                                                                              ; scfifo          ; work         ;
+;          |scfifo_6e31:auto_generated|    ; 13 (0)              ; 8 (0)                     ; 16          ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated                                                                   ; scfifo_6e31     ; work         ;
+;             |a_dpfifo_dk31:dpfifo|       ; 13 (2)              ; 8 (0)                     ; 16          ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo                                              ; a_dpfifo_dk31   ; work         ;
+;                |a_fefifo_i4e:fifo_state| ; 7 (5)               ; 4 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state                      ; a_fefifo_i4e    ; work         ;
+;                   |cntr_2o7:count_usedw| ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw ; cntr_2o7        ; work         ;
+;                |altsyncram_fdm1:FIFOram| ; 0 (0)               ; 0 (0)                     ; 16          ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram                      ; altsyncram_fdm1 ; work         ;
+;                |cntr_mnb:rd_ptr_count|   ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count                        ; cntr_mnb        ; work         ;
+;                |cntr_mnb:wr_ptr|         ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |toplevel|my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:wr_ptr                              ; cntr_mnb        ; work         ;
++------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -254,66 +263,66 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |toplevel|fsm:fsm_top|current_state                                                                                                               ;
-+-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
-; Name                  ; current_state.State3 ; current_state.State2o ; current_state.State2 ; current_state.State1o ; current_state.State1 ; current_state.State0 ;
-+-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
-; current_state.State0  ; 0                    ; 0                     ; 0                    ; 0                     ; 0                    ; 0                    ;
-; current_state.State1  ; 0                    ; 0                     ; 0                    ; 0                     ; 1                    ; 1                    ;
-; current_state.State1o ; 0                    ; 0                     ; 0                    ; 1                     ; 0                    ; 1                    ;
-; current_state.State2  ; 0                    ; 0                     ; 1                    ; 0                     ; 0                    ; 1                    ;
-; current_state.State2o ; 0                    ; 1                     ; 0                    ; 0                     ; 0                    ; 1                    ;
-; current_state.State3  ; 1                    ; 0                     ; 0                    ; 0                     ; 0                    ; 1                    ;
-+-----------------------+----------------------+-----------------------+----------------------+-----------------------+----------------------+----------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |toplevel|fsm:fsm_top|current_state                                                                                                                                       ;
++-----------------------+-----------------------+-----------------------+-----------------------+----------------------+----------------------+----------------------+----------------------+
+; Name                  ; current_state.State6o ; current_state.State5o ; current_state.State4o ; current_state.State3 ; current_state.State2 ; current_state.State1 ; current_state.State0 ;
++-----------------------+-----------------------+-----------------------+-----------------------+----------------------+----------------------+----------------------+----------------------+
+; current_state.State0  ; 0                     ; 0                     ; 0                     ; 0                    ; 0                    ; 0                    ; 0                    ;
+; current_state.State1  ; 0                     ; 0                     ; 0                     ; 0                    ; 0                    ; 1                    ; 1                    ;
+; current_state.State2  ; 0                     ; 0                     ; 0                     ; 0                    ; 1                    ; 0                    ; 1                    ;
+; current_state.State3  ; 0                     ; 0                     ; 0                     ; 1                    ; 0                    ; 0                    ; 1                    ;
+; current_state.State4o ; 0                     ; 0                     ; 1                     ; 0                    ; 0                    ; 0                    ; 1                    ;
+; current_state.State5o ; 0                     ; 1                     ; 0                     ; 0                    ; 0                    ; 0                    ; 1                    ;
+; current_state.State6o ; 1                     ; 0                     ; 0                     ; 0                    ; 0                    ; 0                    ; 1                    ;
++-----------------------+-----------------------+-----------------------+-----------------------+----------------------+----------------------+----------------------+----------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                                                       ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
-; Register name                                                                                                                                              ; Reason for Removal                          ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
-; fsm:fsm_top|counter:fsm_counter|counter_reg[0..24]                                                                                                         ; Stuck at GND due to stuck port clear        ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count|counter_reg_bit[0,1]                        ; Stuck at GND due to stuck port clock_enable ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_full                                    ; Stuck at VCC due to stuck port data_in      ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:wr_ptr|counter_reg_bit[0,1]                              ; Stuck at GND due to stuck port clock_enable ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_non_empty                               ; Stuck at VCC due to stuck port data_in      ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[0,1] ; Stuck at GND due to stuck port clock_enable ;
-; edge_detector:edge_detector_top|input_buffer[0,1]                                                                                                          ; Lost fanout                                 ;
-; debouncer:debouncer_top|counter:my_counter|counter_reg[0..9]                                                                                               ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State0                                                                                                                           ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State1                                                                                                                           ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State1o                                                                                                                          ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State2                                                                                                                           ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State2o                                                                                                                          ; Lost fanout                                 ;
-; fsm:fsm_top|current_state.State3                                                                                                                           ; Lost fanout                                 ;
-; counter:counter_top|counter_reg[29..31]                                                                                                                    ; Lost fanout                                 ;
-; Total Number of Removed Registers = 54                                                                                                                     ;                                             ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                 ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal                  ; Free of Timing Hazards ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+; fsm:fsm_top|next_state.State4o_425                  ; fsm:fsm_top|Selector1                ; yes                    ;
+; fsm:fsm_top|next_state.State6o_405                  ; fsm:fsm_top|Selector1                ; yes                    ;
+; fsm:fsm_top|next_state.State5o_415                  ; fsm:fsm_top|Selector1                ; yes                    ;
+; fsm:fsm_top|counter_int[25]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[24]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[23]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[21]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[22]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[20]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[17]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[18]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[19]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[14]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[15]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[16]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[12]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[13]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[11]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[10]                         ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[9]                          ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|counter_int[8]                          ; fsm:fsm_top|current_state.State3     ; yes                    ;
+; fsm:fsm_top|next_state.State3_435                   ; fsm:fsm_top|Selector5                ; yes                    ;
+; debouncer:debouncer_top|debounce_buf                ; debouncer:debouncer_top|debounce_buf ; yes                    ;
+; fsm:fsm_top|next_state.State0_465                   ; fsm:fsm_top|Selector1                ; yes                    ;
+; fsm:fsm_top|next_state.State2_445                   ; fsm:fsm_top|Selector1                ; yes                    ;
+; fsm:fsm_top|reset_count                             ; fsm:fsm_top|Selector12               ; yes                    ;
+; fsm:fsm_top|next_state.State1_455                   ; fsm:fsm_top|Selector5                ; yes                    ;
+; Number of user-specified and inferred latches = 27  ;                                      ;                        ;
++-----------------------------------------------------+--------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                                                                                     ;
-+-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Register name                                                                                                           ; Reason for Removal        ; Registers Removed due to This Register                                                                                                                    ;
-+-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; fsm:fsm_top|counter:fsm_counter|counter_reg[23]                                                                         ; Stuck at GND              ; edge_detector:edge_detector_top|input_buffer[1],                                                                                                          ;
-;                                                                                                                         ; due to stuck port clear   ; edge_detector:edge_detector_top|input_buffer[0],                                                                                                          ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[9],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[8],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[7],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[6],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[5],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[4],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[3],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[2],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[1],                                                                                                ;
-;                                                                                                                         ;                           ; debouncer:debouncer_top|counter:my_counter|counter_reg[0]                                                                                                 ;
-; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_full ; Stuck at VCC              ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:wr_ptr|counter_reg_bit[1],                              ;
-;                                                                                                                         ; due to stuck port data_in ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|b_non_empty,                             ;
-;                                                                                                                         ;                           ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[1], ;
-;                                                                                                                         ;                           ; my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|a_fefifo_i4e:fifo_state|cntr_2o7:count_usedw|counter_reg_bit[0]  ;
-+-------------------------------------------------------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------+
+; Registers Removed During Synthesis                           ;
++-----------------------------------------+--------------------+
+; Register name                           ; Reason for Removal ;
++-----------------------------------------+--------------------+
+; counter:counter_top|counter_reg[29..31] ; Lost fanout        ;
+; Total Number of Removed Registers = 3   ;                    ;
++-----------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -321,12 +330,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 29    ;
+; Total registers                              ; 82    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 65    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 6     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -355,7 +364,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+-----------------------------------------------------+
 ; Parameter Name ; Value ; Type                                                ;
 +----------------+-------+-----------------------------------------------------+
-; bit_width      ; 25    ; Signed Integer                                      ;
+; bit_width      ; 26    ; Signed Integer                                      ;
 +----------------+-------+-----------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -433,15 +442,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+-------+----------+--------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fsm:fsm_top|counter:fsm_counter"                                                                ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port             ; Type   ; Severity ; Details                                                                             ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
-; reset            ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; counter_o[21..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; counter_o[24]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------------+--------+----------+-------------------------------------------------------------------------------------+
++-----------------------------------------+
+; Port Connectivity Checks: "fsm:fsm_top" ;
++-------+-------+----------+--------------+
+; Port  ; Type  ; Severity ; Details      ;
++-------+-------+----------+--------------+
+; reset ; Input ; Info     ; Stuck at GND ;
++-------+-------+----------+--------------+
 
 
 +-----------------------------------------------------+
@@ -450,19 +457,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 10                          ;
-; cycloneiii_ff         ; 29                          ;
-;     plain             ; 29                          ;
-; cycloneiii_lcell_comb ; 30                          ;
-;     arith             ; 27                          ;
-;         2 data inputs ; 26                          ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 3                           ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 2                           ;
+; cycloneiii_ff         ; 82                          ;
+;     CLR               ; 65                          ;
+;     ENA               ; 6                           ;
+;     plain             ; 11                          ;
+; cycloneiii_lcell_comb ; 131                         ;
+;     arith             ; 62                          ;
+;         2 data inputs ; 58                          ;
+;         3 data inputs ; 4                           ;
+;     normal            ; 69                          ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 31                          ;
+;         4 data inputs ; 23                          ;
 ; cycloneiii_ram_block  ; 4                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.70                        ;
-; Average LUT depth     ; 2.60                        ;
+; Max LUT depth         ; 5.00                        ;
+; Average LUT depth     ; 2.50                        ;
 +-----------------------+-----------------------------+
 
 
@@ -471,7 +482,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -481,7 +492,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Thu Jun  9 09:23:11 2022
+    Info: Processing started: Fri Jun 10 13:19:24 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off sheet6_problem1 -c sheet6_problem1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20029): Only one processor detected - disabling parallel compilation
@@ -516,7 +527,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file edge_de
     Info (12022): Found design unit 1: edge_detector-my_edge_detector File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/edge_detector.vhd Line: 12
     Info (12023): Found entity 1: edge_detector File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/edge_detector.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file fsm.vhd
-    Info (12022): Found design unit 1: fsm-a File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 44
+    Info (12022): Found design unit 1: fsm-a File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 45
     Info (12023): Found entity 1: fsm File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 34
 Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
     Info (12022): Found design unit 1: counter-my_counter File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/counter.vhd Line: 16
@@ -525,8 +536,8 @@ Info (12021): Found 2 design units, including 1 entities, in source file my_fifo
     Info (12022): Found design unit 1: my_fifo-SYN File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/my_fifo.vhd Line: 58
     Info (12023): Found entity 1: my_fifo File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/my_fifo.vhd Line: 43
 Info (12127): Elaborating entity "toplevel" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at toplevel.vhd(26): used implicit default value for signal "fsm_reset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 26
-Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:debouncer_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 90
+Warning (10540): VHDL Signal Declaration warning at toplevel.vhd(27): used explicit default value for signal "fsm_reset" because signal was never assigned a value File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 27
+Info (12128): Elaborating entity "debouncer" for hierarchy "debouncer:debouncer_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 92
 Warning (10492): VHDL Process Statement warning at debouncer.vhd(46): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/debouncer.vhd Line: 46
 Warning (10492): VHDL Process Statement warning at debouncer.vhd(51): signal "counter_reg" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/debouncer.vhd Line: 51
 Warning (10492): VHDL Process Statement warning at debouncer.vhd(52): signal "debounce_buf" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/debouncer.vhd Line: 52
@@ -535,18 +546,53 @@ Info (10041): Inferred latch for "debounce_buf" at debouncer.vhd(44) File: /home
 Info (12128): Elaborating entity "counter" for hierarchy "debouncer:debouncer_top|counter:my_counter" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/debouncer.vhd Line: 34
 Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:edge_detector_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 99
 Info (12128): Elaborating entity "fsm" for hierarchy "fsm:fsm_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 106
-Warning (10812): VHDL warning at fsm.vhd(80): sensitivity list already contains counter_reg File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
 Warning (10492): VHDL Process Statement warning at fsm.vhd(86): signal "current_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 86
-Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Warning (10492): VHDL Process Statement warning at fsm.vhd(104): signal "counter_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 104
+Warning (10492): VHDL Process Statement warning at fsm.vhd(106): signal "counter_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 106
 Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "reset_count", which holds its previous value in one or more paths through the process File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "reset_count" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "next_state", which holds its previous value in one or more paths through the process File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Warning (10631): VHDL Process Statement warning at fsm.vhd(80): inferring latch(es) for signal or variable "counter_int", which holds its previous value in one or more paths through the process File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[0]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[1]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[2]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[3]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[4]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[5]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[6]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[7]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[8]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[9]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[10]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[11]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[12]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[13]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[14]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[15]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[16]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[17]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[18]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[19]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[20]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[21]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[22]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[23]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[24]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[25]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[26]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[27]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[28]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[29]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[30]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "counter_int[31]" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State6o" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State5o" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (10041): Inferred latch for "next_state.State4o" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
 Info (10041): Inferred latch for "next_state.State3" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State2o" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
 Info (10041): Inferred latch for "next_state.State2" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
-Info (10041): Inferred latch for "next_state.State1o" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
 Info (10041): Inferred latch for "next_state.State1" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
 Info (10041): Inferred latch for "next_state.State0" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
-Info (12128): Elaborating entity "counter" for hierarchy "fsm:fsm_top|counter:fsm_counter" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 69
+Info (10041): Inferred latch for "reset_count" at fsm.vhd(80) File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+Info (12128): Elaborating entity "counter" for hierarchy "fsm:fsm_top|counter:fsm_counter" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 70
 Info (12128): Elaborating entity "my_fifo" for hierarchy "my_fifo:fifo_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 119
 Info (12128): Elaborating entity "scfifo" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/my_fifo.vhd Line: 96
 Info (12130): Elaborated megafunction instantiation "my_fifo:fifo_top|scfifo:scfifo_component" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/my_fifo.vhd Line: 96
@@ -580,22 +626,25 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cntr
     Info (12023): Found entity 1: cntr_mnb File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/db/cntr_mnb.tdf Line: 26
 Info (12128): Elaborating entity "cntr_mnb" for hierarchy "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|cntr_mnb:rd_ptr_count" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/db/a_dpfifo_dk31.tdf Line: 44
 Info (12128): Elaborating entity "counter" for hierarchy "counter:counter_top" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 132
+Warning (13012): Latch fsm:fsm_top|next_state.State3_435 has unsafe behavior File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal fsm:fsm_top|current_state.State2 File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 50
+Warning (13012): Latch fsm:fsm_top|reset_count has unsafe behavior File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 53
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal fsm:fsm_top|current_state.State1 File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 50
+Warning (13012): Latch fsm:fsm_top|next_state.State1_455 has unsafe behavior File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 80
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal fsm:fsm_top|current_state.State0 File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/fsm.vhd Line: 50
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 21 registers lost all their fanouts during netlist optimizations.
-Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "my_fifo:fifo_top|scfifo:scfifo_component|scfifo_6e31:auto_generated|a_dpfifo_dk31:dpfifo|altsyncram_fdm1:FIFOram|ALTSYNCRAM" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/db/altsyncram_fdm1.tdf Line: 36
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "USER_BTN" File: /home/hwp1/Documents/RES_Practice/A06/sheet6_problem1/toplevel.vhd Line: 7
-Info (21057): Implemented 44 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 153 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 30 logic cells
+    Info (21061): Implemented 139 logic cells
     Info (21064): Implemented 4 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 18 warnings
     Info: Peak virtual memory: 1091 megabytes
-    Info: Processing ended: Thu Jun  9 09:23:36 2022
-    Info: Elapsed time: 00:00:25
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Processing ended: Fri Jun 10 13:19:46 2022
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:18
 
 

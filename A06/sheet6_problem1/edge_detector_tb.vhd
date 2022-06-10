@@ -43,17 +43,21 @@ ARCHITECTURE behavior OF edge_detector_tb IS
 
 		-- Stimulus process
 		testProc : process
-		begin 		 
+		begin
+			input_tb <= '0';
+			wait for 3*CLK_PERIOD;		
 			input_tb <= '1';
 			wait for CLK_PERIOD;
 			assert output_tb = '1' report "failed" severity failure;
 			input_tb <= '0';
 			wait for CLK_PERIOD;
 			assert output_tb = '1' report "failed" severity failure;
-			input_tb <= '0';
 			wait for 3*CLK_PERIOD;
 			assert output_tb = '0' report "failed" severity failure;
 			input_tb <= '1';
+			wait for 3*CLK_PERIOD;
+			assert output_tb = '0' report "failed" severity failure;
+			input_tb <= '0';
 			wait for CLK_PERIOD;
 			assert output_tb = '1' report "failed" severity failure;
 			report "No errors" severity note;

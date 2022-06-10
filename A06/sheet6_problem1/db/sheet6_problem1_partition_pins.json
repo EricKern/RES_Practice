@@ -38,6 +38,10 @@
 				{
 					"name" : "CLK12M",
 					"strict" : false
+				},
+				{
+					"name" : "USER_BTN",
+					"strict" : false
 				}
 			]
 		}

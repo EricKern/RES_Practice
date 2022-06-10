@@ -2,11 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity toplevel is
-port(
-  CLK12M    : in std_logic;
-  USER_BTN  : in std_logic;
-  LED       : out std_logic_vector(7 downto 0)
-);
+	port(
+		CLK12M    : in std_logic;
+		USER_BTN  : in std_logic;
+		LED       : out std_logic_vector(7 downto 0)
+	);
 end entity toplevel;
 
 architecture rtl of toplevel is
@@ -18,18 +18,19 @@ signal button_in_wire	:  std_logic;
 
 constant counter_width : positive := 32;
 signal counter_reg : std_logic_vector(counter_width-1 downto 0) := (others => '0');
+signal fifo_output : std_logic_vector(3 downto 0) := (others => '0');
 
-signal cntr_reset	:  std_logic;
-signal cntr_w_en	:  std_logic;
-signal cntr_r_en	:  std_logic;
+signal cntr_reset	:  std_logic := '0';
+signal cntr_w_en	:  std_logic := '0';
+signal cntr_r_en	:  std_logic := '0';
 
-signal fsm_reset : std_logic; --unused
+signal fsm_reset : std_logic := '0'; --unused
 
-signal fifo_empty : std_logic;
-signal fifo_full : std_logic;
+signal fifo_empty : std_logic := '0';
+signal fifo_full : std_logic := '0';
 
-signal make_read_req : std_logic;
-signal make_write_req : std_logic;
+signal make_read_req : std_logic := '0';
+signal make_write_req : std_logic := '0';
 
 component debouncer is
 port(
@@ -86,6 +87,7 @@ end component;
 begin
 
 -- instantation section
+button_in_wire <= NOT USER_BTN;
 
 debouncer_top : debouncer
 	port map(
@@ -94,8 +96,6 @@ debouncer_top : debouncer
 		dbounc_out	=> btn_debounced
 	);
 	
-	button_in_wire <= NOT USER_BTN;
-
 edge_detector_top : edge_detector
 	port map(
 		clk		=> CLK12M,
@@ -110,24 +110,24 @@ fsm_top : fsm
 		button			=> btn_debounced_edge,
 		write_enable	=> cntr_w_en,
 		read_enable		=> cntr_r_en,
-		reset_line			=> cntr_reset
+		reset_line		=> cntr_reset
 	);
 
 	make_read_req <= NOT fifo_empty AND cntr_r_en;
 	make_write_req <= NOT fifo_full AND cntr_w_en;
 	
-	fifo_top : my_fifo
-		port map (
-			aclr		=> '0',
-			clock		=> CLK12M,
-			data		=> counter_reg(28 downto 25),
-			rdreq		=> make_read_req,
-			wrreq		=> make_write_req,
-			empty		=> fifo_empty,
-			full		=> fifo_full,
-			q			=> LED(7 downto 4)
-		);
-	
+fifo_top : my_fifo
+	port map (
+		aclr		=> '0',
+		clock		=> CLK12M,
+		data		=> counter_reg(28 downto 25),
+		rdreq		=> make_read_req,
+		wrreq		=> make_write_req,
+		empty		=> fifo_empty,
+		full		=> fifo_full,
+		q			=> fifo_output
+	);
+
 -- free running counter
 counter_top : counter
 	generic map (bit_width => counter_width)
@@ -138,5 +138,6 @@ counter_top : counter
 	);
 		
 LED(3 downto 0) <= counter_reg(28 downto 25);
+LED(7 downto 4) <= fifo_output;
 
 end rtl;
