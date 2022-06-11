@@ -14,3 +14,5 @@
 **/output_files/
 *.bak
 *.rpt
+
+!A06/problem2/simulation/
