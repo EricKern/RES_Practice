@@ -9,7 +9,7 @@ entity timer32A is
 		w_ena		: in  std_logic;
 		r_ena		: in  std_logic;
 		data_in	: in  std_logic_vector(7 downto 0);
-		address	: in  std_logic_vector(7 downto 0);
+		address	: in  std_logic_vector(3 downto 0);
 		data_out	: out std_logic_vector(7 downto 0);
 		ir			: out std_logic
 	  );
@@ -82,22 +82,22 @@ begin
 		elsif(rising_edge(clk)) then
 			if(w_ena = '1') then
 				case address is
-					when B"0000_0000" => -- Load value byte 0
+					when B"0000" => -- Load value byte 0
 						 load_val_reg(7 downto 0) <= data_in;
 						 
-					when B"0000_0001" => -- Load value byte 1
+					when B"0001" => -- Load value byte 1
 						 load_val_reg(15 downto 8) <= data_in;
 						 
-					when B"0000_0010" => -- Load value byte 2
+					when B"0010" => -- Load value byte 2
 						 load_val_reg(23 downto 16) <= data_in;
 						 
-					when B"0000_0011" => -- Load value byte 3
+					when B"0011" => -- Load value byte 3
 						 load_val_reg(31 downto 24) <= data_in;
 						 
-					when B"0000_1000" => -- control register
+					when B"1000" => -- control register
 						 control_reg <= data_in;
 						 
-					when B"0000_1010" => -- clear register
+					when B"1010" => -- clear register
 						 clear_reg <= data_in;
 						 clear_toggler <= NOT clear_toggler;
 						 
@@ -107,54 +107,54 @@ begin
 				
 			elsif(r_ena = '1') then
 				case address is
-					when B"0000_0000" => -- Load value byte 0
+					when B"0000" => -- Load value byte 0
 						 data_out <= load_val_reg(7 downto 0);
 						 
-					when B"0000_0001" => -- Load value byte 1
+					when B"0001" => -- Load value byte 1
 						 data_out <= load_val_reg(15 downto 8);
 						 
-					when B"0000_0010" => -- Load value byte 2
+					when B"0010" => -- Load value byte 2
 						 data_out <= load_val_reg(23 downto 16);
 						 
-					when B"0000_0011" => -- Load value byte 3
+					when B"0011" => -- Load value byte 3
 						 data_out <= load_val_reg(31 downto 24);
 						 
 						 
-					when B"0000_0100" => -- curr value byte 0
+					when B"0100" => -- curr value byte 0
 						if(read_flags = "0000") then
 							read_flags <= "1111";
 						end if;
 						data_out <= current_val_reg(7 downto 0);
 						read_flags(0) <= '0';
 						 
-					when B"0000_0101" => -- curr value byte 1
+					when B"0101" => -- curr value byte 1
 						if(read_flags = "0000") then
 							read_flags <= "1111";
 						end if;
 						data_out <= current_val_reg(15 downto 8);
 						read_flags(1) <= '0';
 						 
-					when B"0000_0110" => -- curr value byte 2
+					when B"0110" => -- curr value byte 2
 						if(read_flags = "0000") then
 							read_flags <= "1111";
 						end if;
 						data_out <= current_val_reg(23 downto 16);
 						read_flags(2) <= '0';
 						 
-					when B"0000_0111" => -- curr value byte 3
+					when B"0111" => -- curr value byte 3
 						if(read_flags = "0000") then
 							read_flags <= "1111";
 						end if;
 						data_out <= current_val_reg(31 downto 24);
 						read_flags(3) <= '0';
 						 
-					when B"0000_1000" => -- control register
+					when B"1000" => -- control register
 						 data_out <= control_reg;
 						 
-					when B"0000_1001" => -- status register
+					when B"1001" => -- status register
 						 data_out <= status_reg;
 						 
-					when B"0000_1010" => -- clear register
+					when B"1010" => -- clear register
 						 data_out <= clear_reg;
 						 
 					when others => -- 'U', 'X', '-'
