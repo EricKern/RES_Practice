@@ -24,14 +24,16 @@ architecture arch1 of timer32A is
 constant all_zero32 		:	std_logic_vector(31 downto 0) := (others => '0');
 
 signal control_reg		:  std_logic_vector(7 downto 0);
-signal status_reg	   	:  std_logic_vector(7 downto 0);
+signal status_reg	   	:  std_logic_vector(7 downto 0) := (others => '0');
 signal clear_reg	   	:  std_logic_vector(7 downto 0);
 signal load_val_reg		:	std_logic_vector(31 downto 0);
 signal current_val_reg	:	std_logic_vector(31 downto 0);
 signal counter_o_wire	:	std_logic_vector(31 downto 0);
 
 signal read_flags	   	:  std_logic_vector(3 downto 0);
-signal clear_toggler    :  std_logic;  -- used to clear interrupt no matter what is written to the clear register
+
+signal clear_toggler_lst:  std_logic := '0';  -- used to clear interrupt no matter what is written to the clear register
+signal clear_toggler    :  std_logic := '0';  -- used to clear interrupt no matter what is written to the clear register
 	 
 
 begin
@@ -51,7 +53,7 @@ begin
 	set_ir:
 	process(counter_o_wire, clear_toggler) is
 	begin
-		if(clear_toggler'event) then
+		if(clear_toggler_lst /= clear_toggler) then
 			status_reg(0) <= '0';
 		elsif(counter_o_wire = all_zero32 AND control_reg(2) = '1') then
 			status_reg(0) <= '1';
@@ -62,7 +64,7 @@ begin
 	
 
 	lock_curr_val:
-	process(read_flags) is
+	process(clk) is
 	begin
 		if(read_flags = "0000") then
 			current_val_reg <= counter_o_wire;
@@ -75,7 +77,6 @@ begin
 	begin 
 		if(reset = '1') then
 			read_flags 	<= "0000";
-			control_reg <= (others => '0');
 			clear_reg 	<= (others => '0');
 			data_out   	<= (others => '0');
 			
@@ -99,6 +100,7 @@ begin
 						 
 					when B"1010" => -- clear register
 						 clear_reg <= data_in;
+						 clear_toggler_lst <= clear_toggler;
 						 clear_toggler <= NOT clear_toggler;
 						 
 					when others => -- 'U', 'X', '-', etc.
@@ -128,23 +130,14 @@ begin
 						read_flags(0) <= '0';
 						 
 					when B"0101" => -- curr value byte 1
-						if(read_flags = "0000") then
-							read_flags <= "1111";
-						end if;
 						data_out <= current_val_reg(15 downto 8);
 						read_flags(1) <= '0';
 						 
 					when B"0110" => -- curr value byte 2
-						if(read_flags = "0000") then
-							read_flags <= "1111";
-						end if;
 						data_out <= current_val_reg(23 downto 16);
 						read_flags(2) <= '0';
 						 
 					when B"0111" => -- curr value byte 3
-						if(read_flags = "0000") then
-							read_flags <= "1111";
-						end if;
 						data_out <= current_val_reg(31 downto 24);
 						read_flags(3) <= '0';
 						 
