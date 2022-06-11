@@ -113,8 +113,8 @@ fsm_top : fsm
 		reset_line		=> cntr_reset
 	);
 
-	make_read_req <= NOT fifo_empty AND cntr_r_en;
-	make_write_req <= NOT fifo_full AND cntr_w_en;
+	make_read_req <= (NOT fifo_empty AND cntr_r_en);
+	make_write_req <= (NOT fifo_full AND cntr_w_en);
 	
 fifo_top : my_fifo
 	port map (
