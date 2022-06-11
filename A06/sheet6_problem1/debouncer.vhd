@@ -48,7 +48,7 @@ ARCHITECTURE a_debouncer  OF debouncer  IS
 		else
 			-- counter counts up
 			reset_count <= '0';
-			if unsigned(counter_reg) = max_count then
+			if to_integer(unsigned(counter_reg)) >= max_count then
 				debounce_buf <= not debounce_buf;
 			end if;
 		end if;
