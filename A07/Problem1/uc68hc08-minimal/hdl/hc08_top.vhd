@@ -35,7 +35,7 @@ entity hc08_top is
             cgmult: integer := 2; --! Multiplier factor for target IP
             gpInvIn: boolean := false; --! invert input
             gpInvOut: boolean := false; --! invert output
-			hasTimer: boolean := false; --! Just for mini mini mode. Normally True !!!
+			hasTimer: boolean := true; --! Just for mini mini mode. Normally True !!!
             pwms: integer := 0; --! Number of PWM outputs
             hasVideo: boolean := false; --! Video available. No statement about framebuffer type yet
             hasI2c: boolean := false; --! I2C
@@ -237,16 +237,16 @@ architecture Behavioral of hc08_top is
 
 
 
-	component timer
+	component timer32A
     PORT(
          clk : IN  std_logic;
-         rst : IN  std_logic;
-         re : IN  std_logic;
-         we : IN  std_logic;
-         addr : IN  std_logic_vector(3 downto 0);
-         din : IN  std_logic_vector(7 downto 0);
-         dout : out  std_logic_vector(7 downto 0);
-         irq : OUT  std_logic
+         reset : IN  std_logic;
+         w_ena : IN  std_logic;
+         r_ena : IN  std_logic;
+         data_in : IN  std_logic_vector(3 downto 0);
+         address : IN  std_logic_vector(7 downto 0);
+         data_out : out  std_logic_vector(7 downto 0);
+         ir : OUT  std_logic
         );
 	end component;
 
@@ -752,16 +752,16 @@ begin
     -- allow to compile without timer for mini-mini mode 
 	withTimer: if hasTimer generate begin
 	perCfg(timerId) <= '1';
-	tm: timer
+	tm: timer32A
     PORT map(
          clk => uclk,
-         rst => cpuRst,
-         re => mrd(timerId),
-         we => mwr(timerId),
-         addr => addr(3 downto 0),
-         din => dataout,
-         dout => rdData(timerId),
-         irq => intr(timerid)
+         reset => cpuRst,
+			w_ena => mwr(timerId),
+         r_ena => mrd(timerId),
+         data_in => dataout,
+			address => addr(3 downto 0),
+         data_out => rdData(timerId),
+         ir => intr(timerid)
         );
 	end generate;
 
