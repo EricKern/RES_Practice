@@ -33,14 +33,15 @@
 /// \addtogroup TIMER
 /// @{
 #define TMR_BASE 0x90 ///< Base address
-#define TMR_SET_BASE (TMR_BASE + 0) ///< WO, set register 0, lower 8 bits of set value. followed by 3 subsequent registers. Set occurs when writing 3. register
-#define TMR_GET_BASE (TMR_BASE + 0) ///< RO, get register 0, lower 8 bits of current value, followed by 3 subsequent registers. Capture occurs when reading 1. register
-#define TMR_RUN_ADDR (TMR_BASE + 4) ///< WO, run control register
-#define TMR_REP_ADDR (TMR_BASE + 5) ///< WO repeat control register
-#define TMR_IEN_ADDR (TMR_BASE + 6) ///< WO interrupt enable/disable register
-#define TMR_CLR_ADDR (TMR_BASE + 7) ///< WO clear interrupt register. data is don't care
-#define TMR_STAT_ADDR (TMR_BASE + 4) ///< RO, status register
+#define TMR_SET_LOAD_VAL (TMR_BASE + 0) ///< WO, set register 0, lower 8 bits of set value. followed by 3 subsequent registers. Set occurs when writing 3. register
+#define TMR_GET_VAL (TMR_BASE + 4) ///< RO, get register 0, lower 8 bits of current value, followed by 3 subsequent registers. Capture occurs when reading 1. register
+#define TMR_CNTRL_ADDR (TMR_BASE + 8) ///< WO control register
+#define TMR_STAT_ADDR (TMR_BASE + 9) ///< RO, status register
+#define TMR_CLR_ADDR (TMR_BASE + 10) ///< WO clear interrupt register. data is don't care
 #define TMR_STATBIT_IRQ 0 ///< interrupt status (1: active)
+#define TMR_CNTRLBIT_EN 0 ///< enable counting (1: active)
+#define TMR_CNTRLBIT_USE_LOAD_VAL 1 ///< set to 1 if load_val should be the underflow value (1: active)
+#define TMR_CNTRLBIT_EN_IRQ 2 ///< enables interrupts during underflow (1: active)
 /// @}
 
 /// \addtogroup UART
