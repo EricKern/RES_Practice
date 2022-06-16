@@ -240,13 +240,13 @@ architecture Behavioral of hc08_top is
 	component timer32A
     PORT(
          clk : IN  std_logic;
-         reset : IN  std_logic;
-         w_ena : IN  std_logic;
-         r_ena : IN  std_logic;
-         data_in : IN  std_logic_vector(3 downto 0);
-         address : IN  std_logic_vector(7 downto 0);
-         data_out : out  std_logic_vector(7 downto 0);
-         ir : OUT  std_logic
+         rst : IN  std_logic;
+         we : IN  std_logic;
+         re : IN  std_logic;
+         din : IN  std_logic_vector(7 downto 0);
+         addr : IN  std_logic_vector(3 downto 0);
+         dout : out  std_logic_vector(7 downto 0);
+         irq : OUT  std_logic
         );
 	end component;
 
@@ -755,13 +755,13 @@ begin
 	tm: timer32A
     PORT map(
          clk => uclk,
-         reset => cpuRst,
-			w_ena => mwr(timerId),
-         r_ena => mrd(timerId),
-         data_in => dataout,
-			address => addr(3 downto 0),
-         data_out => rdData(timerId),
-         ir => intr(timerid)
+         rst => cpuRst,
+			we => mwr(timerId),
+         re => mrd(timerId),
+         din => dataout,
+			addr => addr(3 downto 0),
+         dout => rdData(timerId),
+         irq => intr(timerid)
         );
 	end generate;
 
