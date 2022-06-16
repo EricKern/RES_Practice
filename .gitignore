@@ -11,6 +11,7 @@
 **/db/
 **/incremental_db/
 **/simulation/
+**/rtl_work/
 **/output_files/
 *.bak
 *.rpt

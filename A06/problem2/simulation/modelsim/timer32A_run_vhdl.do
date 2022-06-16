@@ -5,10 +5,10 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vcom -93 -work work {E:/RES_Practice/A06/problem2/load_counter.vhd}
-vcom -93 -work work {E:/RES_Practice/A06/problem2/timer32A.vhd}
+vcom -93 -work work {../../load_counter.vhd}
+vcom -93 -work work {../../timer32A.vhd}
 
-vcom -93 -work work {E:/RES_Practice/A06/problem2/timer32A_tb.vhd}
+vcom -93 -work work {../../timer32A_tb.vhd}
 
 vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclone10lp -L rtl_work -L work -voptargs="+acc"  timer_peripheral_tb
 
@@ -16,22 +16,22 @@ vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclone10l
 
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /timer_peripheral_tb/clk_tb
-add wave -noupdate /timer_peripheral_tb/reset_tb
-add wave -noupdate /timer_peripheral_tb/write_en_tb
-add wave -noupdate /timer_peripheral_tb/read_en_tb
-add wave -noupdate /timer_peripheral_tb/data_in_tb
-add wave -noupdate /timer_peripheral_tb/address_tb
-add wave -noupdate -radix unsigned /timer_peripheral_tb/data_out_tb
-add wave -noupdate /timer_peripheral_tb/interrupt_request_tb
-add wave -noupdate /timer_peripheral_tb/uut/clk
-add wave -noupdate /timer_peripheral_tb/uut/reset
-add wave -noupdate /timer_peripheral_tb/uut/w_ena
-add wave -noupdate /timer_peripheral_tb/uut/r_ena
-add wave -noupdate /timer_peripheral_tb/uut/data_in
-add wave -noupdate /timer_peripheral_tb/uut/address
-add wave -noupdate /timer_peripheral_tb/uut/data_out
-add wave -noupdate /timer_peripheral_tb/uut/ir
+add wave -noupdate -label clk_tb /timer_peripheral_tb/clk_tb
+add wave -noupdate -label clk /timer_peripheral_tb/uut/clk
+add wave -noupdate -label reset_tb /timer_peripheral_tb/reset_tb
+add wave -noupdate -label reset /timer_peripheral_tb/uut/reset
+add wave -noupdate -label write_en_tb /timer_peripheral_tb/write_en_tb
+add wave -noupdate -label w_ena /timer_peripheral_tb/uut/w_ena
+add wave -noupdate -label read_en_tb /timer_peripheral_tb/read_en_tb
+add wave -noupdate -label r_ena /timer_peripheral_tb/uut/r_ena
+add wave -noupdate -label data_in_tb /timer_peripheral_tb/data_in_tb
+add wave -noupdate -label data_in /timer_peripheral_tb/uut/data_in
+add wave -noupdate -radix unsigned -label data_out_tb /timer_peripheral_tb/data_out_tb
+add wave -noupdate -label data_out /timer_peripheral_tb/uut/data_out
+add wave -noupdate -label address_tb /timer_peripheral_tb/address_tb
+add wave -noupdate -label address /timer_peripheral_tb/uut/address
+add wave -noupdate -label interrupt_request_tb /timer_peripheral_tb/interrupt_request_tb
+add wave -noupdate -label ir /timer_peripheral_tb/uut/ir
 add wave -noupdate /timer_peripheral_tb/uut/control_reg
 add wave -noupdate /timer_peripheral_tb/uut/status_reg
 add wave -noupdate /timer_peripheral_tb/uut/clear_reg

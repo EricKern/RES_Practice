@@ -19,31 +19,35 @@ end entity;
 architecture arch1 of load_counter is
 
 	constant all_zeros : std_logic_vector(counter_o'range) := (others => '0');
-
+	
+	
+	
 	signal counter_reg : std_logic_vector(bit_width-1 downto 0);
+	signal actual_load_val : std_logic_vector(bit_width-1 downto 0);
 
   begin
-    process(clk, reset)
+	 actual_load_val <= load_val when use_load = '1' else (others => '1');
+  
+  
+    process(clk, reset, actual_load_val)
     begin
       if(reset = '1') then
-			if use_load = '1' then
-				counter_reg <= load_val;
-			else
-				counter_reg <= (others => '1');
-			end if;
-      elsif (rising_edge(clk) AND en= '1') then
-		
-			if(counter_reg = all_zeros) then -- checks if all zeros
-				if use_load = '1' then
-					counter_reg <= load_val;
+			counter_reg <= actual_load_val;
+      elsif (rising_edge(clk)) then
+			if(en = '1') then
+				if(counter_reg = all_zeros) then -- checks if all zeros
+					if use_load = '1' then
+						counter_reg <= load_val;
+					else
+						counter_reg <= std_logic_vector( unsigned(counter_reg) - 1 );
+					end if;
 				else
 					counter_reg <= std_logic_vector( unsigned(counter_reg) - 1 );
 				end if;
-
+				
 			else
-				counter_reg <= std_logic_vector( unsigned(counter_reg) - 1 );
-		   end if;
-			
+				counter_reg <= counter_reg;
+			end if;
 			
       end if;
     end process;
