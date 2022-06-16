@@ -1,0 +1,52 @@
+#cyc1000
+#pmod
+pio_01, f13
+pio_02, f15, 1p
+pio_03, f16, 1n
+pio_04, d16
+pio_05, d15
+pio_06, c15, 2p
+pio_07, b16
+pio_08, c16, 2n
+# config flash
+as_dclk, h1
+as_asdo, c1
+as_ncs, d2
+as_data0, h2
+# sensor
+sen_cs, d1, #i2c enable (if 1)
+sen_sdi, g2, #i2c sda. lsb of address, base is 001100xb => 0x18
+sen_spc, f3, #i2c scl
+sen_sdo, g1, # i2c address a0, spi miso
+sen_int1, b1
+sen_int2, c2
+# connector j1: d0..d5, ain0..ain6, aref
+j1_d0, n1
+j1_d1, l15
+j1_d2, l16
+j1_d3, k15
+j1_d4, k16
+j1_d5, j14
+j1_a0, r12
+j1_a1, t13
+j1_a2, r13
+j1_a3, t14
+j1_a4, p14
+j1_a5, r14
+j1_a6, t15
+j1_aref, p11, #via 1R parallel 100nf
+# connector j2: d6..d14, reset
+j2_d6, n2
+j2_d7, n1
+j2_d8, p2
+j2_d9, j1
+j2_d10, j2
+j2_d11, k2, # l10p 
+j2_d11r, k1, # l10n, via 4k7
+j2_d12, l2, # l11p
+j2_d12r, l2, # l11n, via 4k7
+j2_d13, p1
+j2_d14, r1
+# connector j3: ain, ain7
+j3_ain, t12
+j3_a7, r12

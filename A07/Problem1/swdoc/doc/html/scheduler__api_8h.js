@@ -1,0 +1,28 @@
+var scheduler__api_8h =
+[
+    [ "CLI", "group__scheduler__api.html#ga7806d82cb41c78b6d2a9a236e60bf19c", null ],
+    [ "DEFAULT_STACK_SIZE", "group__scheduler__api.html#ga87dcbc4991a2a2fc4eb6fc6a24449f26", null ],
+    [ "GPIO_ISR_MBOX", "group__application__config.html#gacaf9a6b2ba66fb0bd46c9f7fdab1ac06", null ],
+    [ "GPIO_TEST_MBOX", "group__application__config.html#gadcc77cab73c8d7934f303106020cc74f", null ],
+    [ "GPIO_TEST_MUTEX", "group__application__config.html#ga479c2dbcb0116c9007457fd11dcd2af8", null ],
+    [ "NUMMBOX", "group__scheduler__api.html#ga4828a70d1790f5075d17a50c073b9a80", null ],
+    [ "NUMMUTEX", "group__scheduler__api.html#gafdfe2361111bbe7b3916292cfc3239cb", null ],
+    [ "NUMTASKS", "group__scheduler__api.html#ga4cffa1add0c664c5e4518c2a33a4e5f8", null ],
+    [ "SC_HI_PRIO", "group__scheduler__api.html#gaba0b0abf0667c758f2e0918210758af3", null ],
+    [ "SC_LO_PRIO", "group__scheduler__api.html#ga142a84fa5c4677d0fc6414e0927d5bff", null ],
+    [ "SC_TICK_PERIOD", "group__scheduler__api.html#ga81ff8bfecd06e009875ca65bb1397838", null ],
+    [ "SEI", "group__scheduler__api.html#ga4452ae7bc68f7cc0f2975202b0fd1999", null ],
+    [ "USERTASKS", "group__scheduler__api.html#gaa13be3ce653fb6be16b57169da9a999e", null ],
+    [ "WAIT", "group__scheduler__api.html#gaef72fe86b7c60b1a86920496456edeac", null ],
+    [ "ScGetTicks", "group__scheduler__api.html#gaf0a918849d32d57166a3d6b2efee16df", null ],
+    [ "ScIsr", "group___interrupt_handler.html#gaaf489e44433380ffb37d3182893fd8c8", null ],
+    [ "ScmBoxIsValid", "group__scheduler__api.html#ga6c246e15a684b2f2abd55753564c2f06", null ],
+    [ "ScmBoxPend", "group__scheduler__api.html#ga09768b12ba6ca900f6c48204873ffe83", null ],
+    [ "ScmBoxPost", "group__scheduler__api.html#ga5ee2f969a651f12a649a0ba5160e117b", null ],
+    [ "ScmutexRelease", "group__scheduler__api.html#ga3a4b3e3f3891ff481f7f949411c45e91", null ],
+    [ "ScmutexTake", "group__scheduler__api.html#ga66ad252c91ffe99d9703dc66884e7009", null ],
+    [ "ScStart", "group__scheduler__api.html#ga3d295924c99fbdae0a606851c631dcb4", null ],
+    [ "ScTaskCreate", "group__scheduler__api.html#gaabdf7050f0548fe3e48d895904a34764", null ],
+    [ "ScTaskPrioCreate", "group__scheduler__api.html#gac85638f5397586a6e4b3242cdaaffcba", null ],
+    [ "ScTimeBlock", "group__scheduler__api.html#ga5ac88d591a00c65f8baf87eab6c67485", null ]
+];

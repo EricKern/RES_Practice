@@ -1,0 +1,187 @@
+
+/* irq/ vectors
+
+if rising_edge(clk) then
+irq_d <= irq;
+if (irq = '0') and (irq_d = '1') and (flagI = '0') then -- irq falling edge ?
+    irqRequest <= '1';
+end if;
+
+--------------
+
+$FFFA/FFFB Virq
+$FFFC/FFFD Vswi
+$FFFE/FFFF Vreset
+
+if trace = '0' then
+    if irqRequest = '0' then
+    temp    <= x"FFFC"; -- SWI vector
+    else
+    irqRequest <= '0';
+    temp    <= x"FFFA"; -- IRQ vector
+    end if;
+    mainFSM <= "1000";
+else
+    temp    <= x"FFF8"; -- trace vector
+    mainFSM <= "1011";
+
+-----------------
+
+3.6
+Parameters and Local Variables
+Automatic (local) variables and parameters to functions are placed on the stack for most targets. For
+MCS51/DS390/HC08/S08 they can either be placed on the stack or in data-space. The default action of the
+compiler is to place these variables in the internal RAM (for small model) or external RAM (for medium or large
+model). This in fact makes them similar to static so by default functions are non-reentrant.
+They can be placed on the stack by using the --stack-auto option, by using #pragma stackauto or by using
+the __reentrant keyword in the function declaration, e.g.:
+
+unsigned char foo(char i) __reentrant
+{
+...
+}
+Since stack space on 8051 is limited, the __reentrant keyword or the --stack-auto option should be used sparingly.
+Note that the reentrant keyword just means that the parameters & local variables will be allocated to the stack, it
+does not mean that the function is register bank independent.
+Local variables can be assigned intrinsic named address spaces and absolute addresses, e.g.:
+unsigned char foo(__xdata int parm)
+{
+__xdata unsigned char i;
+__bit bvar;
+__data __at (0x31) unsigned char j;
+...
+}
+In the above example the parameter parm and the variable i will be allocated in the external ram, bvar in bit ad-
+dressable space and j in internal ram. When compiled with --stack-auto or when a function is declared as reentrant
+this should only be done for static variables.
+It is however allowed to use bit parameters in reentrant functions and also non-static local bit variables are
+supported. Efficient use is limited to 8 semi-bitregisters in bit space. They are pushed and popped to stack as a
+single byte just like the normal registers.
+
+
+3.8
+CHAPTER 3. USING SDCC
+Interrupt Service Routines
+3.8.1
+General Information
+SDCC allows interrupt service routines to be coded in C, with some extended keywords.
+void timer_isr (void) __interrupt (1) __using (1)
+{
+...
+}
+The optional number following the __interrupt keyword is the interrupt number this routine will service. When
+present, the compiler will insert a call to this routine in the interrupt vector table for the interrupt number specified.
+If you have multiple source files in your project, interrupt service routines can be present in any of them, but a
+prototype of the isr MUST be present or included in the file that contains the function main. The optional (8051
+specific) keyword __using can be used to tell the compiler to use the specified register bank when generating code
+for this function.
+Interrupt service routines open the door for some very interesting bugs:
+3.8.1.1
+Common interrupt pitfall: variable not declared volatile
+If an interrupt service routine changes variables which are accessed by other functions these variables have to be
+declared volatile. See http://en.wikipedia.org/wiki/Volatile_variable.
+3.8.1.2
+Common interrupt pitfall: non-atomic access
+If the access to these variables is not atomic (i.e. the processor needs more than one instruction for the access
+and could be interrupted while accessing the variable) the interrupt must be disabled during the access to avoid
+inconsistent data.
+Access to 16 or 32 bit variables is obviously not atomic on 8 bit CPUs and should be protected by disabling
+interrupts. You’re not automatically on the safe side if you use 8 bit variables though. We need an example here:
+f.e. on the 8051 the harmless looking ”flags |= 0x80;” is not atomic if flags resides in xdata. Setting
+”flags |= 0x40;” from within an interrupt routine might get lost if the interrupt occurs at the wrong time.
+”counter += 8;” is not atomic on the 8051 even if counter is located in data memory.
+Bugs like these are hard to reproduce and can cause a lot of trouble.
+3.8.1.3
+Common interrupt pitfall: stack overflow
+The return address and the registers used in the interrupt service routine are saved on the stack so there must be
+sufficient stack space. If there isn’t variables or registers (or even the return address itself) will be corrupted. This
+stack overflow is most likely to happen if the interrupt occurs during the ”deepest” subroutine when the stack is
+already in use for f.e. many return addresses.
+3.8.1.4
+Common interrupt pitfall: use of non-reentrant functions
+A special note here, integer multiplicative operators and floating-point operations might be implemented using
+external support routines, depending on the target architecture. If an interrupt service routine needs to do any of
+these operations on a target where functions are non-reentrent by default, then the support routines (as mentioned
+in a following section) will have to be recompiled using the --stack-auto option and the source file will need to be
+compiled using the --int-long-reent compiler option.
+Note, the type promotion required by ANSI C can cause 16 bit routines to be used without the programmer being !
+aware of it. See f.e. the cast (unsigned char)(tail-1) within the if clause in section 3.11.2.
+Calling other functions from an interrupt service routine on a target where functions are non-reentrent by default
+is not recommended, avoid it if possible. Note that when some function is called from an interrupt service routine it
+should be preceded by a #pragma nooverlay if it is not reentrant. Furthermore nonreentrant functions should not be
+called from the main program while the interrupt service routine might be active. They also must not be called from
+low priority interrupt service routines while a high priority interrupt service routine might be active. You could use
+semaphores or make the function critical if all parameters are passed in registers.
+Also see section 3.7 about Overlaying and section 3.10 about Functions using private register banks.
+
+3.8.3
+HC08 Interrupt Service Routines
+Since the number of interrupts available is chip specific and the interrupt vector table always ends at the last byte
+of memory, the interrupt numbers corresponds to the interrupt vectors in reverse order of address. For example,
+interrupt 1 will use the interrupt vector at 0xfffc, interrupt 2 will use the interrupt vector at 0xfffa, and so on.
+However, interrupt 0 (the reset vector at 0xfffe) is not redefinable in this way; instead see section ?? for details on customizing startup.
+
+
+3.9.1
+Behaviour
+Interrupt handler can be
+interrupted by further interrupts of
+same priority
+Interrupt handler can be
+interrupted by interrupts of higher
+priority only
+void f(void) __critical __interrupt(0)
+Behaviour
+Interrupt handler can be
+interrupted by further interrupts
+Interrupt handler cannot be
+interrupted by further interrupts
+Enabling and Disabling Interrupts
+Critical Functions and Critical Statements
+A special keyword may be associated with a block or a function declaring it as __critical. SDCC will generate code
+to disable all interrupts upon entry to a critical function and restore the interrupt enable to the previous state before
+returning. Nesting critical functions will need one additional byte on the stack for each call.
+int foo () __critical
+{
+...
+...
+}
+The critical attribute maybe used with other attributes like reentrant.
+The keyword __critical may also be used to disable interrupts more locally:
+__critical{ i++; }
+More than one statement could have been included in the block.
+
+On other architectures which have separate opcodes for enabling and disabling interrupts you might want to make
+use of defines with inline assembly (HC08):
+#define CLI asm (”cli”);
+#define SEI asm (”sei”);
+
+
+When the CPU receives a qualified interrupt request, it completes the current instruction before
+responding to the interrupt. The interrupt sequence follows the same cycle-by-cycle sequence as the SWI
+instruction and consists of:
+• Saving the CPU registers on the stack
+• Setting the I bit in the CCR to mask further interrupts
+• Fetching the interrupt vector for the highest priority interrupt that is currently pending
+• Filling the instruction queue with the first three bytes of program information starting from the
+address fetched from the interrupt vector locations
+While the CPU is responding to the interrupt, the I bit is automatically set to avoid the possibility of another
+interrupt interrupting the ISR itself (this is called nesting of interrupts). Normally, the I bit is restored to 0
+when the CCR is restored from the value that was stacked on entry to the ISR. In rare cases, the I bit may
+be cleared inside an ISR (after clearing the status flag that generated the interrupt) so that other interrupts
+can be serviced without waiting for the first service routine to finish. This practice is not recommended for
+anyone other than the most experienced programmers because it can lead to subtle program errors that
+are difficult to debug.
+
+
+*/
+
+// !!!!!!!!!!!!!!!!!!!!!
+/*
+ * Looks like the compiler has a problem on optimzing global variable
+ * might also be related to LONG manipulations
+ * Local Variables seem to be OK, or use volatile on globals
+*/
+// !!!!!!!!!!!!!!!!!!!!!
+
+
