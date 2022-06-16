@@ -15,6 +15,7 @@ static volatile unsigned char swic = 0;
 static volatile unsigned char hwic = 0;
 static volatile unsigned char gpic = 0;
 static volatile unsigned char uric = 0;
+static volatile unsigned char tmer_ic = 0;
 
 
 
@@ -81,6 +82,8 @@ void main(void) {
         if (!simulation) printf("CLI\r\n");
         CLI
 
+        init_timer();
+
         // wait for isr
         if (!simulation) printf("Enter loop\r\n");
         while (1) {
@@ -89,11 +92,25 @@ void main(void) {
 				        *(volatile unsigned char*)UART_IEN_ADDR = 1 << UART_IRQEN_RXD_BIT; // reactivate rx data irq
                         putchar(r);
                 }
-		        *(volatile unsigned char*)GPIO_DATA_ADDR = uric + gpic; // show counters on led
+		        *(volatile unsigned char*)GPIO_DATA_ADDR = uric + gpic + tmer_ic; // show counters on led
                 if (!simulation) printf("...WFI...");
+
                 WAIT
         }
 
+}
+
+void init_timer(void){
+        *(volatile unsigned char*)TMR_CNTRL_ADDR = 0; // clear control register
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 0) = 0x00;
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 1) = 0x1b;
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 2) = 0xb7;
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 3) = 0x00;        // 0xb71b00 is 12 million in decimal
+
+
+        *(volatile unsigned char*)TMR_CNTRL_ADDR |= (1 << TMR_CNTRLBIT_USE_LOAD_VAL);    // Set use_reload_value bit
+        *(volatile unsigned char*)TMR_CNTRL_ADDR |= (1 << TMR_CNTRLBIT_EN_IRQ);          // Set enable_interrupt bit
+        *(volatile unsigned char*)TMR_CNTRL_ADDR |= (1 << TMR_CNTRLBIT_EN);              // Set timer_enable bit
 }
 
 
@@ -121,6 +138,12 @@ void hwIsr (void) __interrupt (2)    // irq2 is pin
         if ((*(volatile unsigned char *)UART_STAT_ADDR & (1 << UART_STATBIT_IRQ))) {
                 *((volatile unsigned char *)(UART_IEN_ADDR)) = 0; // turn irq off. no action yet
                 uric++;
+        }
+
+        // check timer
+        if ((*(volatile unsigned char *)TMR_STAT_ADDR & (1 << TMR_STATBIT_IRQ))) {
+                *((volatile unsigned char *)(TMR_CLR_ADDR)) = 0x0; // default clear
+                tmer_ic++;
         }
 }
 
