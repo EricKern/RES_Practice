@@ -69,7 +69,7 @@ void main(void) {
                 printf("tdel: %lu\r\n",tdelay);
         }
 
-        *(volatile unsigned char*)GPIO_DATA_ADDR = 0xc6; 
+        *(volatile unsigned char*)GPIO_DATA_ADDR = 0xc6;
 
         // enable gpio irq (for irq test in simulation ...)
         *(volatile unsigned char*)GPIO_CLR_ADDR = 0x0; // default clear
@@ -160,5 +160,3 @@ int putchar(int c_) {
         // video output
         return (int)c; // return EOF on error
 }
-
-

@@ -1,0 +1,153 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+CABS                   00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  l_CABS    |    00000000  l_CODEIVT |    00000000  l_GSINIT 
+     00000000  l_HOME    |    00000000  l_IABS    |    00000000  l_OSEG   
+     00000000  l_XABS    |    00000000  l__CODE   |    00000000  s_CABS   
+     00000000  s_CODEIVT |    00000000  s_CODEIVT |    00000000  s_DSEG   
+     00000000  s_IABS    |    00000000  s_XABS    |    00000000  s__CODE  
+     00000003  l_GSFINAL |    00000005  l_XINIT   |    00000005  l_XISEG  
+     00000006  l_CODEIVT |    00000006  l_DSEG    |    00000006  s_OSEG   
+     0000001E  l_GSINIT0 |    00000075  l_CONST   |    00000501  l_XSEG   
+     00001119  l_CSEG    |    00006000  s_XSEG    |    00006501  s_XISEG  
+     00008000  s_GSINIT0 |    00008000  s_HOME    |    0000801E  s_GSFINAL
+     0000801E  s_GSINIT  |    00008021  s_CSEG    |    0000913A  s_XINIT  
+     0000913F  s_CONST  
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+CODEIVT0               00000000    00000006 =           6. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+.  .ABS.               00000000    00000000 =           0. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  .__.ABS.  |    00000000  .__.CPU.  |    00000001  .__.H$L. 
+     00002710  .__.$$$. 
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+GSINIT0                00008000    0000001E =          30. bytes (REL,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00008000  __sdcc_gs |    0000800C  __sdcc_in
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+GSFINAL                0000801E    00000003 =           3. bytes (REL,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+CSEG                   00008021    00001119 =        4377. bytes (REL,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00008021  __sdcc_pr |    00008026  _main     |    000081C2  _init_tim
+     000081E4  _swIsr    |    000081F0  _hwIsr    |    00008223  _putchar 
+     00008230  __sdcc_ex |    00008235  _vprintf  |    0000824F  _printf  
+     0000826A  __mullong |    00008637  __print_f |    00009116  _strlen  
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+XINIT                  0000913A    00000005 =           5. bytes (REL,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000913A  __xinit__ |    0000913B  __xinit__ |    0000913C  __xinit__
+     0000913D  __xinit__ |    0000913E  __xinit__
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+CONST                  0000913F    00000075 =         117. bytes (REL,CON,CODE)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000913F  ___str_0  |    00009150  ___str_1  |    0000915C  ___str_2 
+     00009168  ___str_3  |    00009173  ___str_4  |    00009180  ___str_5 
+     0000918C  ___str_6  |    00009192  ___str_7  |    0000919F  ___str_8 
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+DSEG                   00000000    00000006 =           6. bytes (REL,CON,PAG)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  ___SDCC_h |    00000001  ___SDCC_h |    00000002  ___SDCC_h
+     00000003  ___SDCC_h |    00000004  ___SDCC_h |    00000005  ___SDCC_h
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+XSEG                   00006000    00000501 =        1281. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00006000  _ar       |    00006400  _dr       |    00006500  _simulati
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+XISEG                  00006501    00000005 =           5. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00006501  _swic     |    00006502  _hwic     |    00006503  _gpic    
+     00006504  _uric     |    00006505  _tmer_ic 
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+
+Files Linked                              [ module(s) ]
+
+./obj/main_simple.rel                     [ main_simple ]
+
+
+Libraries Linked                          [ object file ]
+
+./lib/hclib.lib                           [ _startup ]
+./lib/hclib.lib                           [ _ret ]
+./lib/hclib.lib                           [ vprintf ]
+./lib/hclib.lib                           [ _mullong ]
+./lib/hclib.lib                           [ printf_large ]
+./lib/hclib.lib                           [ _strlen ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+
+User Base Address Definitions
+
+HOME=32768
+XSEG=24576
+DSEG=0x0000
+
+
