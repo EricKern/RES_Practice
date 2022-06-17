@@ -1,0 +1,71 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Motorola 68HC(S)08), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0001 L
+    ___SDCC_hc08_ret2                                              **** GX
+    ___SDCC_hc08_ret3                                              **** GX
+  7 ___str_0                                                       0000 R
+  7 ___str_1                                                       0011 R
+  7 ___str_2                                                       001D R
+  7 ___str_3                                                       0029 R
+  7 ___str_4                                                       0034 R
+  7 ___str_5                                                       0041 R
+  7 ___str_6                                                       004D R
+  7 ___str_7                                                       0053 R
+  7 ___str_8                                                       0060 R
+    __mullong                                                      **** GX
+    __sdcc_external_startup                                        **** GX
+  2 __sdcc_gs_init_startup                                         0000 R
+  2 __sdcc_init_data                                               000C R
+  5 __sdcc_program_startup                                         0000 R
+  6 __xinit__gpic                                                  0002 R
+  6 __xinit__hwic                                                  0001 R
+  6 __xinit__swic                                                  0000 R
+  6 __xinit__tmer_ic                                               0004 R
+  6 __xinit__uric                                                  0003 R
+  A _ar                                                            0000 R
+  A _dr                                                            0400 R
+  B _gpic                                                          0002 R
+  5 _hwIsr                                                         01CF GR
+  B _hwic                                                          0001 R
+  5 _init_timer                                                    01A1 GR
+  5 _main                                                          0005 GR
+    _printf                                                        **** GX
+  5 _putchar                                                       0202 GR
+  A _simulation                                                    0500 R
+  5 _swIsr                                                         01C3 GR
+  B _swic                                                          0000 R
+  B _tmer_ic                                                       0004 R
+  B _uric                                                          0003 R
+    l_XINIT                                                        **** GX
+    s_XINIT                                                        **** GX
+    s_XISEG                                                        **** GX
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Motorola 68HC(S)08), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size    0   flags    0
+   1 HOME                                       size    0   flags   20
+   2 GSINIT0                                    size   1E   flags   20
+   3 GSINIT                                     size    0   flags   20
+   4 GSFINAL                                    size    3   flags   20
+   5 CSEG                                       size  20F   flags   20
+   6 XINIT                                      size    5   flags   20
+   7 CONST                                      size   6A   flags   20
+   8 DSEG                                       size    0   flags   10
+   9 OSEG                                       size    0   flags   14
+   A XSEG                                       size  501   flags    0
+   B XISEG                                      size    5   flags    0
+   C CODEIVT                                    size    0   flags    8
+   D CODEIVT0                                   size    6   flags    8
+   E IABS                                       size    0   flags    8
+   F XABS                                       size    0   flags    8
+  10 CABS                                       size    0   flags   28
+
