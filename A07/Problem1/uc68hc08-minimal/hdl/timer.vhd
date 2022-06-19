@@ -4,7 +4,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity timer32A is
+entity timer is
 port(
 	clk		: in std_logic;
 	rst		: in std_logic;
@@ -15,9 +15,9 @@ port(
 	dout		: out std_logic_vector(7 downto 0);
 	irq		: out std_logic
 );
-end entity timer32A;
+end entity timer;
 
-architecture rtl of timer32A is
+architecture rtl of timer is
 
 signal load_value			: std_logic_vector(31 downto 0);	-- R/W
 signal current_value 	: std_logic_vector(31 downto 0);	-- R/O

@@ -237,7 +237,7 @@ architecture Behavioral of hc08_top is
 
 
 
-	component timer32A
+	component timer
     PORT(
          clk : IN  std_logic;
          rst : IN  std_logic;
@@ -752,7 +752,7 @@ begin
     -- allow to compile without timer for mini-mini mode 
 	withTimer: if hasTimer generate begin
 	perCfg(timerId) <= '1';
-	tm: timer32A
+	tm: timer
     PORT map(
          clk => uclk,
          rst => cpuRst,

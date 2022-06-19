@@ -102,10 +102,20 @@ void main(void) {
 
 void init_timer(void){
         *(volatile unsigned char*)TMR_CNTRL_ADDR = 0; // clear control register
-        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 0) = 0x00;
-        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 1) = 0x1b;
-        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 2) = 0xb7;
-        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 3) = 0x00;        // 0xb71b00 is 12 million in decimal
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 0) = 0x00;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 1) = 0x1b;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 2) = 0xb7;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 3) = 0x00;        // 0x0b71b00 is 12 million in decimal
+
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 0) = 0x40;
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 1) = 0x78;
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 2) = 0x7d;        // actual clock on timer periferal on cyc10
+        *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 3) = 0x01;        // 0x17d7840 is 25 million in decimal
+
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 0) = 0x80;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 1) = 0xc3;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 2) = 0xc9;
+        // *(volatile unsigned char*)(TMR_SET_LOAD_VAL + 3) = 0x01;        // 0x1C9C380 is 30 million in decimal
 
 
         *(volatile unsigned char*)TMR_CNTRL_ADDR |= (1 << TMR_CNTRLBIT_USE_LOAD_VAL);    // Set use_reload_value bit

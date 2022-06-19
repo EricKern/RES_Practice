@@ -22,7 +22,8 @@ using namespace  std;
 
 // g++ --std=c++11 -o ucLoadFtdi ucLoadFtdi.cpp -lftdi1 -I /usr/include/libftdi1
 // call like this:
-// ./ucLoadFtdi -f ../sw/main.bin -s 0xc000 -c 1 
+// ./ucLoadFtdi -f ../sw/main.bin -s 0xc000 -c 1
+// ./ucLoadFtdi -f ../sw/obj/main_simple.bin -s 0x8000 -c 1
 
 #define BAUDRATE B115200
 

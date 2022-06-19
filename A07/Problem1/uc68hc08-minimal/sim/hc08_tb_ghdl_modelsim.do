@@ -7,6 +7,8 @@ vmap work rtl_work
 
 vcom -2008 -work work {../hdl/eprom_defs_pack.vhd}
 vcom -2008 -work work {../sw/mem_simple.vhd}
+vcom -2008 -work work {../hdl/load_counter.vhd}
+vcom -2008 -work work {../hdl/timer.vhd}
 
 vcom -2008 -work work {../hdl/arch/ramRom_d_cyc.vhd}
 vcom -2008 -work work {../hdl/arch/clkgen_cyc1000.vhd}
@@ -59,7 +61,10 @@ sim:/hc08_tb_ghdl/uut/uut/core/flagH \
 sim:/hc08_tb_ghdl/uut/uut/core/flagI \
 sim:/hc08_tb_ghdl/uut/uut/core/flagN \
 sim:/hc08_tb_ghdl/uut/uut/core/flagZ \
-sim:/hc08_tb_ghdl/uut/uut/core/flagC
+sim:/hc08_tb_ghdl/uut/uut/core/flagC \
+sim:/hc08_tb_ghdl/uut/uut/withTimer/tm/current_value
+
+configure wave -timelineunits us
 
 view structure
 view signals
